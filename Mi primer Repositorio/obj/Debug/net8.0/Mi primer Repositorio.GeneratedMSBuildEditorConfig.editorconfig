@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Mi_primer_Repositorio
-build_property.ProjectDir = C:\UCB\GitHub\SIS112\Mi primer Repositorio\
+build_property.ProjectDir = C:\GitHub\SIS112\Mi primer Repositorio\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

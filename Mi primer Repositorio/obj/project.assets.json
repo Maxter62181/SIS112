@@ -8,24 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\UCB\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\UCB\\GitHub\\SIS112\\Mi primer Repositorio\\Mi primer Repositorio.csproj",
+      "projectUniqueName": "C:\\GitHub\\SIS112\\Mi primer Repositorio\\Mi primer Repositorio.csproj",
       "projectName": "Mi primer Repositorio",
-      "projectPath": "C:\\UCB\\GitHub\\SIS112\\Mi primer Repositorio\\Mi primer Repositorio.csproj",
-      "packagesPath": "C:\\Users\\UCB\\.nuget\\packages\\",
-      "outputPath": "C:\\UCB\\GitHub\\SIS112\\Mi primer Repositorio\\obj\\",
+      "projectPath": "C:\\GitHub\\SIS112\\Mi primer Repositorio\\Mi primer Repositorio.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\GitHub\\SIS112\\Mi primer Repositorio\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\UCB\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
