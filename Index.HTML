@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script>
+    function HelloWorld(){
+        alert("HelloWorld");
+    }
+   //promt es igual que imputBox o Input 
+    function GetAge(){
+        var age = prompt("please enter your age", "10");
+        alert("Hello!, your age is: " + age);
+    }
+
+    function CalculateAge(){
+        var BirthYear = prompt("please select your birth year.");
+        if (BirthYear > 2024) {
+            while (BirthYear > 2024) {
+                 BirthYear = prompt("please select an existing year")
+             };
+            alert("HELLO!!! your age is: " + (2024 - BirthYear));
+             
+        } else{
+            alert("Hello!! your age is: " + (2024 - BirthYear));
+        } 
+      
+    }
+
+  </script>
+   
+
+<title>Maxter's WEB</title>
+
+</head>
+<body>
+
+<h1>My frist web page</h1>
+    <p>UCB</p>
+
+<button type="button" onclick ="HelloWorld()"
+>Click Me HELLO WORLD! </button>
+
+<button type="button" onclick="GetAge()"
+>Click Me to get your age!!!</button>
+
+<button type="button" onclick="CalculateAge()"
+>Click Me to calculate your age!</button>
+
+</body>
+</html>
