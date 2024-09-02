@@ -45,10 +45,10 @@ class Persona {
   
       while (!esNumeroValido) {
           nuevaEdad = prompt("Por favor, ingrese su nueva edad");
-          if (!isNaN(nuevaEdad) && nuevaEdad.trim() !== "" && Number(nuevaEdad) > 0) {
+          if (!isNaN(nuevaEdad) && nuevaEdad.trim() !== "" && Number(nuevaEdad) > 0 && Number(nuevaEdad) <= 90 ) {
               esNumeroValido = true;
           } else {
-              alert("Por favor, ingrese un número válido mayor que 0 para la edad.");
+              alert("Por favor, ingrese un número válido mayor que 0 y coherente con el escandar de vida de una persona para la edad.");
           }
       }
   
@@ -92,6 +92,9 @@ class Persona {
       //this.nombre = prompt("Porfavor solo dele a la tecla enter")
       alert("Se procedio a eliminar el nombre")
       this.nombre = ""
+      if (this.nombre = ""){
+        alert("no se puede eliminar un dato que no existe")
+       }
       return this.nombre
     }
 
@@ -99,6 +102,9 @@ class Persona {
       //this.edad = prompt("Porfavor solo dele a la tecla enter")
       alert("Se procedio a eliminar la edad")
       this.edad = ""
+      if (this.edad = ""){
+        alert("no se puede eliminar un dato que no existe")
+       }
       return this.edad 
     }
 //Las funciones de eliminación se dedican fribola y unicamente a llenar la variable del inicio con un vacio y la alerta 
@@ -106,6 +112,9 @@ class Persona {
      //this.carrera = prompt("Porfavor solo dele a la tecla enter")
      alert("Se procedio a eliminar la carrera")
      this.carrera = ""
+     if (this.carrera = ""){
+      alert("no se puede eliminar un dato que no existe")
+     }
      return this.carrera 
     }
 
@@ -113,6 +122,9 @@ class Persona {
       //this.universidad = prompt("Porfavor solo dele a la tecla enter")
       alert("Se procedio a eliminar la universidad")
       this.universidad = ""
+      if (this.universidad = ""){
+        alert("no se puede eliminar un dato que no existe")
+       }
       return this.universidad 
     }
   } 
@@ -167,25 +179,46 @@ class Persona {
     Universidad.textContent = persona.Modificar_Universidad();
   }
 
-   //Funcion para eliminar nombre 
-   function botonEliminarNombre(){
-    saludar.textContent = persona.Eliminar_Nombre();
+// Función para eliminar nombre
+function botonEliminarNombre() {
+  if (saludar.textContent !== "") {
+      saludar.textContent = "";
+      alert("El nombre ha sido eliminado.");
+  } else {
+      alert("No hay un nombre para eliminar.");
   }
+}
 
-  //Funcion para eliminar edad 
-  function botonEliminarEdad(){
-    edad.textContent = persona.Eliminar_Edad(); 
+// Función para eliminar edad
+function botonEliminarEdad() {
+  if (edad.textContent !== "") {
+      edad.textContent = "";
+      alert("La edad ha sido eliminada.");
+  } else {
+      alert("No hay una edad para eliminar.");
   }
+}
 
-  //Funcion para eliminar Carrera 
-  function botonEliminarCarrera(){
-    carrera.textContent = persona.Eliminar_Carrera();
+// Función para eliminar carrera
+function botonEliminarCarrera() {
+  if (carrera.textContent !== "") {
+      carrera.textContent = "";
+      alert("La carrera ha sido eliminada.");
+  } else {
+      alert("No hay una carrera para eliminar.");
   }
+}
 
-  //FUncion para eliminar Universidad 
-  function botonEliminarUniversidad(){
-    Universidad.textContent = persona.Eliminar_Universidad(); 
+// Función para eliminar universidad
+function botonEliminarUniversidad() {
+  if (Universidad.textContent !== "") {
+      Universidad.textContent = "";
+      alert("La universidad ha sido eliminada.");
+  } else {
+      alert("No hay una universidad para eliminar.");
   }
+}
+  
   
 
  
