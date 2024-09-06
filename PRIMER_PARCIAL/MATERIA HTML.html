@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MIS MATERIAS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Mi materia 
+            </div>
+            <div class="card-body">
+                <img src="Altern-Hether-icon.png" width="100px" height="100px" alt="Imagen de perfil">
+                <img src="perfil.png" width="100px" height="100px" alt="Imagen de perfil">
+                <img src="https://lh3.googleusercontent.com/a/ACg8ocJoTRuFJYhmZ-oQnNAQIyuBwndm5OizTU17sAA3zKGTRxd1v3k=s96-c-rg-br100" width="200px" height="200" alt="Imagen de perfil">
+                <img src="https://media.tenor.com/PznY9aV9pcEAAAAi/mega-rayquaza-rayquaza.gif" width="100px" height="100px" alt="Gif de perfil"> 
+                <h5 class="card-title" id="materia"></h5>
+                <p class="card-text" id="sigla"></p>
+                <p class="card-text" id="docente"></p>
+                <p class="card-text" id="horario"></p>
+                <p class="card-text" id="aula"></p>
+                <p class="card-text" id="requisito"></p>
+                <p class="card-text" id="carrera"></p>
+                <p class="card-text" id="universidad"></p>
+                <p class="card-text" id="inscritos"></p>
+
+                <h1>CREAR MATERIAS</h1>
+                <button class="btn btn-primary" onclick="botonMateriaCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonMateriaAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonMateriaFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonMateriaLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonMateriaManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonMateriaEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonMateriaProgramacion()">Programacion</button>
+                <h1>MODIFICAR MATERIAS</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarMateriaCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarMateriaAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarMateriaFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarMateriaLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarMateriaManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarMateriaEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarMateriaProgramacion()">Programacion</button>
+                <h1>ELIMINAR ATRIBUTOS</h1>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarMateria()">Materia</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarSigla()">Sigla</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarDocente()">Docente</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarHorario()">Horario</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarAula()">Aula</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarRequisito()">Requisito</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarCarrera()">Carrera</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarUniversidad()">Universidad</button>
+                <button style="background-color: red;" class="btn btn-secondary" onclick="botonEliminarInscritos()">Inscritos</button>
+
+                <h1>CREAR SIGLAS</h1>
+                <button class="btn btn-primary" onclick="botonSiglaCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonSiglaAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonSiglaFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonSiglaLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonSiglaManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonSiglaEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonSiglaProgramacion()">Programacion</button>
+                <h1>MODIFICAR SIGLAS</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarSiglaCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarSiglaAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarSiglaFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarSiglaLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarSiglaManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarSiglaEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarSiglaProgramacion()">Programacion</button>
+                
+                <h1>CREAR DOCENTES</h1>
+                <button class="btn btn-primary" onclick="botonDocenteCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonDocenteAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonDocenteFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonDocenteLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonDocenteManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonDocenteEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonDocenteProgramacion()">Programacion</button>
+                <h1>MODIFICAR DOCENTES</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarDocenteCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarDocenteAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarDocenteFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarDocenteLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarDocenteManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarDocenteEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarDocenteProgramacion()">Programacion</button>
+            
+                <h1>CREAR HORARIOSS</h1>
+                <button class="btn btn-primary" onclick="botonHorarioCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonHorarioAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonHorarioFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonHorarioLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonHorarioManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonHorarioEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonHorarioProgramacion()">Programacion</button>
+                <h1>MODIFICAR HORARIOS</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarHorarioCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarHorarioAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarHorarioFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarHorarioLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarHorarioManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarHorarioEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarHorarioProgramacion()">Programacion</button>
+                
+                <h1>CREAR AULAS</h1>
+                <button class="btn btn-primary" onclick="botonAulaCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonAulaAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonAulaFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonAulaLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonAulaManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonAulaEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonAulaProgramacion()">Programacion</button>
+                <h1>MODIFICAR AULAS</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarAulaCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarAulaAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarAulaFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarAulaLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarAulaManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarAulaEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarAulaProgramacion()">Programacion</button>
+                
+                <h1>CREAR REQUISITOS</h1>
+                <button class="btn btn-primary" onclick="botonRequisitoCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonRequisitoAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonRequisitoFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonRequisitoLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonRequisitoManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonRequisitoEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonRequisitoProgramacion()">Programacion</button>
+                <h1>MODIFICAR REQUISITOS</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarRequisitoProgramacion()">Programacion</button>
+                
+                <h1>CREAR CARRERA</h1>
+                <button class="btn btn-primary" onclick="botonCarreraCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonCarreraAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonCarreraFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonCarreraLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonCarreraManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonCarreraEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonCarreraProgramacion()">Programacion</button>
+                <h1>MODIFICAR CARRERA</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarCarreraCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarCarreraAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarCarreraFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarCarreraLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarCarreraManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarCarreraEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarCarreraProgramacion()">Programacion</button>
+                
+                <h1>CREAR UNIVERSIDAD</h1>
+                <button class="btn btn-primary" onclick="botonUniversidadCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonUniversidadAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonUniversidadFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonUniversidadLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonUniversidadManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonUniversidadEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonUniversidadProgramacion()">Programacion</button>
+                <h1>MODIFICAR UNIVERSIDAD</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarUniversidadProgramacion()">Programacion</button>
+                
+                <h1>CREAR INSCRITOS</h1>
+                <button class="btn btn-primary" onclick="botonInscritosCalculo()">Calculo</button>
+                <button class="btn btn-primary" onclick="botonInscritosAntropologia()">Antropologia</button>
+                <button class="btn btn-primary" onclick="botonInscritosFisica()">Fisica</button>
+                <button class="btn btn-primary" onclick="botonInscritosLabFisica()">LabFisica</button>
+                <button class="btn btn-primary" onclick="botonInscritosManufactura()">Manufactura</button>
+                <button class="btn btn-primary" onclick="botonInscritosEstadistica()">Estadistica</button>
+                <button class="btn btn-primary" onclick="botonInscritosProgramacion()">Programacion</button>
+                <h1>MODIFICAR INSCRITOS</h1> 
+                <button class="btn btn-secondary" onclick="botonModificarInscritosCalculo()">Calculo</button>
+                <button class="btn btn-secondary" onclick="botonModificarInscritosAntropologia()">Antropologia</button>
+                <button class="btn btn-secondary" onclick="botonModificarInscritosFisica()">Fisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarInscritosLabFisica()">LabFisica</button>
+                <button class="btn btn-secondary" onclick="botonModificarInscritosManufactura()">Manufactura</button>
+                <button class="btn btn-secondary" onclick="botonModificarInscritosEstadistica()">Estadistica</button>
+                <button class="btn btn-secondary" onclick="botonModificarInscritosProgramacion()">Programacion</button>
+               
+            </div>
+        </div>
+    </div>
+    <script src="C:\GitHub\SIS112\PRIMER_PARCIAL"></script>
+    <script src="Class_Materia.js"></script>
+</body>
+</html>
