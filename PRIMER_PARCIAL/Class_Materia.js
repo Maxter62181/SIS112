@@ -1,5 +1,5 @@
 class Materia{
-        constructor(nombreMateria, sigla, docente, horarios, aula, prerequisito, carrera, universidad, cantidadinscritos){
+        constructor(nombreMateria, sigla, docente, horarios, aula, prerequisito, carrera, universidad, cantidadinscritos, modalidad, calificacionMinimaAprobacion, temas, ubicacionLatitudLongitud){
          this.nombreMateria = nombreMateria
          this.sigla = sigla
          this.docente = docente
@@ -9,6 +9,10 @@ class Materia{
          this.carrera = carrera
          this.universidad = universidad
          this.cantidadinscritos = cantidadinscritos 
+         this.modalidad = modalidad
+         this.calificacionMinimaAprobacion = calificacionMinimaAprobacion
+         this.temas = temas
+         this.ubicacionLatitudLongitud = ubicacionLatitudLongitud
         }
     //crearemos las funciones para las variables. 
           Nmateria(){
@@ -46,6 +50,21 @@ class Materia{
          Inscritos(){
              return "La cantidad de inscritos en la materia de " + this.nombreMateria + " es de aproximadamente " + this.cantidadinscritos + " alumnos.";
          }
+
+         Modalidad(){
+            return "La modalidad de estudio de esta materia es: " + this.modalidad ;
+         }
+
+         CalificacionMinima(){
+            return "La calificacion minima para aprobar la materia de " + this.nombreMateria + " es de mayor o igual a " + this.calificacionMinimaAprobacion ; 
+         }
+
+         TemasDeAvance(){
+            return "los temas a avanzar dentro de la materia son: " + this.temas ;
+          }
+          Ubicacion(){
+            return "La materia se imparte en la siguiente ubicación : " + this.ubicacionLatitudLongitud ; 
+          }
 
          // Métodos de modificación
          modificarNombreMateria(){
@@ -191,16 +210,81 @@ class Materia{
            this.inscritos = Number(nuevacantidad);
            return "ahora la materia de " + this.nombreMateria + " tiene un total de " + this.inscritos + " estudiantes.";
   }
+        modificarModalidad(){
+            let nuevamodalidad; 
+            let ModalidadValida = false ; 
+
+            while(!ModalidadValida) { 
+                nuevamodalidad = prompt("Porfavor ingrese la nueva modalidad de avance entre: 'online', 'presencial' e 'híbrida'.");
+                if (nuevamodalidad === "online" || nuevamodalidad === "presencial" || nuevamodalidad === "híbrida" ){
+                    ModalidadValida = true;
+                }else{
+                    alert("Porfavor ingrese una modalidad de estudio valida.");
+                }
+
+            }
+            this.modalidad = String(nuevamodalidad);
+            return "Ahora la nueva modalidad de avance para la materia de " + this.nombreMateria + " es " + this.modalidad 
+        }
+
+        modificarCalificacionMinima(){
+            let nuevacalificacion;
+            let esCalificacionValida = false;
+  
+            while (!esCalificacionValida) {
+                nuevacalificacion = prompt("Por favor, ingrese su nueva nota minima de calificacion.");
+             if (!isNaN(nuevacalificacion) && nuevacalificacion.trim() !== "" && Number(nuevacalificacion) > 0 && Number(nuevacalificacion) <= 100 ) {
+                esCalificacionValida = true;
+             } else {
+              alert("Por favor, ingrese un valor de calificacion valido menor o igual a 100.");
+             }
+            }
+           this.calificacionMinimaAprobacion = Number(nuevacalificacion);
+           return "ahora la calificaci de aprobacion minima en la materia de " + this.nombreMateria + " es de: " + this.calificacionMinimaAprobacion + " puntos.";
+
+        }
+
+        modificartemas(){
+            let nuevotema;
+            let TemasValidos = false; 
+      
+            while (!TemasValidos){
+                nuevotema = prompt("Porfavor ingrese la nueva rubrica detemas bajo el siguiente formato: ['tema1','tema2', temaN']");
+              if (!parseInt(nuevotema) && nuevotema.trim() !== "" && !/^[a-zA-Z\[\]\-,.]+$/.test(nuevotema)){
+                TemasValidos = true; 
+              }else{
+                alert("Porfavor ingrese temas validos para la materia.");
+              }
+            }
+              this.temas = String(nuevotema);
+              return "Los nuevos temas a avanzar dentro de la materia de " + this.nombreMateria + " son: " + this.temas; 
+        }
+
+        modificarUbicacion(){
+            let nuevaubicacion;
+            let UbicacionValida = false; 
+      
+            while (!UbicacionValida){
+                nuevaubicacion = prompt("Porfavor ingrese la ubicacion para cursar la materia.");
+              if (!parseInt(nuevaubicacion) && nuevaubicacion.trim() !== "" && !/^[a-zA-Z\[\]\-,.]+$/.test(nuevaubicacion)){
+                UbicacionValida = true; 
+              }else{
+                alert("Porfavor ingrese una ubicacion valida");
+              }
+            }
+              this.ubicacionLatitudLongitud = String(nuevaubicacion);
+              return "La nueva ubicacion para cursar la materia de " + this.nombreMateria + " es en: " + this.ubicacionLatitudLongitud; 
+        }
      
 }
 
-const Calculo1 = new Materia("Calculo I", "[MAT-132]", "Ing.M.Sc.ALEMÁN RAMIREZ TOMAS WILSON", "Lunes y Miercoles(14:05 - 15:45)", "12 AULA A-N4", "Matemática Basica", "Ingeniería industrial", "UCB", 21);
-const Antropologia_Y_Valores = new Materia("Antropologia y valores", "[FHC-101]" , "DE LA BARRA BARRA EXALTA GABRIELA", "Martes y Jueves(09:10 - 10:40)" , " Martes: 4 AULA A-N3, Jueves: B 2-1", "Ninguno", "Ingenieria Industrial", "UCB", 62);
-const Fisica1 = new Materia("Fisica I", "[FIS-111]", " LOBO LIMPIAS VICTOR HUGO", "Lunes y Miercoles(09:10 - 10:40)", "E 2-5", "Ninguno", "Ingenieria Industrial", "UCB", 45);
-const LabFisica = new Materia("Fisica I y Laboratorio", "[FIS-111]", "ALVAREZ CABALLERO ROBERTO CARLOS", "Miercoles(10:50 - 12:20)", "F 1-2 (LAB. PROCESOS)", "Ninguno", "Ingenieria Industrial", "UCB", 15);
-const Manufactura = new Materia("Manufactura y Mecanizado", "[IND-112]", "SALVATIERRA ARANCIBIA JORGE ENRIQUE", "Martes, Jueves y Viernes(07:30 - 09:00", "Martes: 12 AULA A-N4, Jueves y Viernes: F 1-2 (LAB. PROCESOS)", "Introduccion al diseño industrial", "Ingenieria industrial", "UCB", 14);
-const Estadistica = new Materia("Probabilidad y Estadistica I", "[MAT-142]", "BARCA MAGARZO CARMEN SILVIA", "Martes y Jueves(10:50 - 12:20)", "D 2-1 (LAB. CÓMPUTO 2)", "Ninguno", "Ingenieria Industrial", "UCB", 33);
-const Programacion = new Materia("Programación I", "[SIS-112]", "ESCALANTE USTARIZ EDDY", "Lunes(10:50 - 12:20) y Viernes(09:10 - 11:35)", "C 2-2 (LAB. CÓMPUTO 5)", "Introducción a la programacion", "Ingenieria Industrial", "UCB", 15)
+const Calculo1 = new Materia("Calculo I", "[MAT-132]", "Ing.M.Sc.ALEMÁN RAMIREZ TOMAS WILSON", "Lunes y Miercoles(14:05 - 15:45)", "12 AULA A-N4", "Matemática Basica", "Ingeniería industrial", "UCB", 21, "presencial", 60 , '["Límites y Continuidad", "Derivadas", "Aplicaciones de la Derivada", "Integrales Definidas e Indefinidas", "Aplicaciones de la Integral", "Teorema Fundamental del Cálculo", "Técnicas de Integración", "Funciones Trascendentes", "Límites Indeterminados y Regla de L Hôpital", "Series y Sucesiones"]', "-17.695191,-63.1514697");
+const Antropologia_Y_Valores = new Materia("Antropologia y valores", "[FHC-101]" , "DE LA BARRA BARRA EXALTA GABRIELA", "Martes y Jueves(09:10 - 10:40)" , " Martes: 4 AULA A-N3, Jueves: B 2-1", "Ninguno", "Ingenieria Industrial", "UCB", 62, "presencial", 60 , '["Concepto de Antropología", "Antropología Filosófica", "La Persona Humana", "Cultura y Sociedad", "Ética y Valores Humanos", "Diversidad Cultural", "Derechos Humanos y Dignidad", "Identidad y Globalización", "Valores en la Familia y la Sociedad", "Responsabilidad Social y Ciudadana"]', "-17.695191,-63.1514697");
+const Fisica1 = new Materia("Fisica I", "[FIS-111]", " LOBO LIMPIAS VICTOR HUGO", "Lunes y Miercoles(09:10 - 10:40)", "E 2-5", "Ninguno", "Ingenieria Industrial", "UCB", 45, "presencial", 60, '["Cinemática", "Dinámica", "Leyes de Newton", "Trabajo y Energía", "Conservación de la Energía", "Cantidad de Movimiento y Colisiones", "Rotación de Cuerpos Rígidos", "Gravitación", "Equilibrio y Elasticidad", "Fluidos"]', "-17.695191,-63.1514697");
+const LabFisica = new Materia("Fisica I y Laboratorio", "[FIS-111]", "ALVAREZ CABALLERO ROBERTO CARLOS", "Miercoles(10:50 - 12:20)", "F 1-2 (LAB. PROCESOS)", "Ninguno", "Ingenieria Industrial", "UCB", 15, "presencial", 60 , '["Cinemática", "Dinámica", "Leyes de Newton", "Trabajo y Energía", "Conservación de la Energía", "Cantidad de Movimiento y Colisiones", "Rotación de Cuerpos Rígidos", "Gravitación", "Equilibrio y Elasticidad", "Fluidos"]' , "-17.695191,-63.1514697");
+const Manufactura = new Materia("Manufactura y Mecanizado", "[IND-112]", "SALVATIERRA ARANCIBIA JORGE ENRIQUE", "Martes, Jueves y Viernes(07:30 - 09:00", "Martes: 12 AULA A-N4, Jueves y Viernes: F 1-2 (LAB. PROCESOS)", "Introduccion al diseño industrial", "Ingenieria industrial", "UCB", 14, "presencial", 60 , '["Procesos de Manufactura", "Fundición", "Formado de Metales", "Mecanizado", "Máquinas Herramienta", "Torneado", "Fresado", "Rectificado", "CNC y Automatización", "Procesos de Soldadura", "Control de Calidad en Manufactura"]', "-17.695191,-63.1514697");
+const Estadistica = new Materia("Probabilidad y Estadistica I", "[MAT-142]", "BARCA MAGARZO CARMEN SILVIA", "Martes y Jueves(10:50 - 12:20)", "D 2-1 (LAB. CÓMPUTO 2)", "Ninguno", "Ingenieria Industrial", "UCB", 33, "presencial", 60, '["Introducción a la Probabilidad", "Espacios Muestrales y Eventos", "Reglas de Probabilidad", "Probabilidad Condicional e Independencia", "Variables Aleatorias Discretas", "Distribuciones de Probabilidad Discretas", "Variables Aleatorias Continuas", "Distribuciones de Probabilidad Continuas", "Distribución Normal", "Estimación y Teoría del Muestreo"]', "-17.695191,-63.1514697");
+const Programacion = new Materia("Programación I", "[SIS-112]", "ESCALANTE USTARIZ EDDY", "Lunes(10:50 - 12:20) y Viernes(09:10 - 11:35)", "C 2-2 (LAB. CÓMPUTO 5)", "Introducción a la programacion", "Ingenieria Industrial", "UCB", 15, "presencial", 60 , '["Introducción a la Programación", "Tipos de Datos y Variables", "Estructuras de Control de Flujo", "Funciones y Procedimientos", "Arreglos y Matrices", "Cadenas de Caracteres", "Punteros y Referencias", "Estructuras de Datos Básicas", "Manejo de Archivos", "Depuración y Pruebas de Código"]', "-17.695191,-63.1514697")
 
 
 const materia = document.getElementById('materia');
@@ -212,6 +296,11 @@ const requisito = document.getElementById("requisito");
 const carrera = document.getElementById("carrera");
 const universidad = document.getElementById("universidad");
 const inscritos = document.getElementById("inscritos");
+const modalidad = document.getElementById("modalidad");
+const calificacionminima = document.getElementById("calificacionminima"); 
+const temas = document.getElementById("temas"); 
+const ubicacion = document.getElementById("ubicacion"); 
+
 
 function botonMateriaCalculo(){
     materia.textContent = Calculo1.Nmateria(); 
@@ -456,6 +545,119 @@ function botonInscritosProgramacion(){
     inscritos.textContent = Programacion.Inscritos(); 
 }
 
+//Funcion boton Modalidad
+function botonModalidadCalculo(){
+    modalidad.textContent = Calculo1.Modalidad(); 
+}
+
+function botonModalidadAntropologia(){
+    modalidad.textContent = Antropologia_Y_Valores.Modalidad(); 
+}
+function botonModalidadFisica(){
+    modalidad.textContent = Fisica1.Modalidad(); 
+}
+
+function botonModalidadLabFisica(){
+    modalidad.textContent = LabFisica.Modalidad(); 
+}
+
+function botonModalidadManufactura(){
+    modalidad.textContent = Manufactura.Modalidad(); 
+}
+
+function botonModalidadEstadistica(){
+    modalidad.textContent = Estadistica.Modalidad(); 
+}
+
+function botonModalidadProgramacion(){
+    modalidad.textContent = Programacion.Modalidad(); 
+}
+
+//funcion boton de calificacionminima
+function botonCalificacionMinimaCalculo(){
+    calificacionminima.textContent = Calculo1.CalificacionMinima(); 
+}
+
+function botonCalificacionMinimaAntropologia(){
+    calificacionminima.textContent = Antropologia_Y_Valores.CalificacionMinima(); 
+}
+function botonCalificacionMinimaFisica(){
+    calificacionminima.textContent = Fisica1.CalificacionMinima(); 
+}
+
+function botonCalificacionMinimaLabFisica(){
+    calificacionminima.textContent = LabFisica.CalificacionMinima(); 
+}
+
+function botonCalificacionMinimaManufactura(){
+    calificacionminima.textContent = Manufactura.CalificacionMinima(); 
+}
+
+function botonCalificacionMinimaEstadistica(){
+    calificacionminima.textContent = Estadistica.CalificacionMinima(); 
+}
+
+function botonCalificacionMinimaProgramacion(){
+    calificacionminima.textContent = Programacion.CalificacionMinima(); 
+}
+
+//funcion boton de temas 
+
+function botonTemasDeAvanceCalculo(){
+    temas.textContent = Calculo1.TemasDeAvance(); 
+}
+
+function botonTemasDeAvanceAntropologia(){
+    temas.textContent = Antropologia_Y_Valores.TemasDeAvance(); 
+}
+function botonTemasDeAvanceFisica(){
+    temas.textContent = Fisica1.TemasDeAvance(); 
+}
+
+function botonTemasDeAvanceLabFisica(){
+    temas.textContent = LabFisica.TemasDeAvance(); 
+}
+
+function botonTemasDeAvanceManufactura(){
+    temas.textContent = Manufactura.TemasDeAvance(); 
+}
+
+function botonTemasDeAvanceEstadistica(){
+    temas.textContent = Estadistica.TemasDeAvance(); 
+}
+
+function botonTemasDeAvanceProgramacion(){
+    temas.textContent = Programacion.TemasDeAvance(); 
+}
+
+//funcion de boton de ubicacion
+
+function botonUbicacionCalculo(){
+    ubicacion.textContent = Calculo1.Ubicacion(); 
+}
+
+function botonUbicacionAntropologia(){
+    ubicacion.textContent = Antropologia_Y_Valores.Ubicacion(); 
+}
+function botonUbicacionFisica(){
+    ubicacion.textContent = Fisica1.Ubicacion(); 
+}
+
+function botonUbicacionLabFisica(){
+    ubicacion.textContent = LabFisica.Ubicacion(); 
+}
+
+function botonUbicacionManufactura(){
+    ubicacion.textContent = Manufactura.Ubicacion(); 
+}
+
+function botonUbicacionEstadistica(){
+    ubicacion.textContent = Estadistica.Ubicacion(); 
+}
+
+function botonUbicacionProgramacion(){
+    ubicacion.textContent = Programacion.Ubicacion(); 
+}
 
 // botones para Modificar datos 
 function botonModificarMateriaCalculo(){
@@ -701,6 +903,120 @@ function botonModificarInscritosProgramacion(){
     inscritos.textContent = Programacion.modificarCantidadInscritos(); 
 }
 
+//funcion modificar modalidad de calculo
+
+function botonModificarModalidadCalculo(){
+    modalidad.textContent = Calculo1.modificarModalidad(); 
+}
+
+function botonModificarModalidadAntropologia(){
+    modalidad.textContent = Antropologia_Y_Valores.modificarModalidad(); 
+}
+function botonModificarModalidadFisica(){
+    modalidad.textContent = Fisica1.modificarModalidad(); 
+}
+
+function botonModificarModalidadLabFisica(){
+    modalidad.textContent = LabFisica.modificarModalidad(); 
+}
+
+function botonModificarModalidadManufactura(){
+    modalidad.textContent = Manufactura.modificarModalidad(); 
+}
+
+function botonModificarModalidadEstadistica(){
+    modalidad.textContent = Estadistica.modificarModalidad(); 
+}
+
+function botonModificarModalidadProgramacion(){
+    modalidad.textContent = Programacion.modificarModalidad(); 
+}
+
+//funcion boton de modificar calificacion minima
+function botonModificarCalificacionMinimaCalculo(){
+    calificacionminima.textContent = Calculo1.modificarCalificacionMinima(); 
+}
+
+function botonModificarCalificacionMinimaAntropologia(){
+    calificacionminima.textContent = Antropologia_Y_Valores.modificarCalificacionMinima(); 
+}
+function botonModificarCalificacionMinimaFisica(){
+    calificacionminima.textContent = Fisica1.modificarCalificacionMinima(); 
+}
+
+function botonModificarCalificacionMinimaLabFisica(){
+    calificacionminima.textContent = LabFisica.modificarCalificacionMinima(); 
+}
+
+function botonModificarCalificacionMinimaManufactura(){
+    calificacionminima.textContent = Manufactura.modificarCalificacionMinima(); 
+}
+
+function botonModificarCalificacionMinimaEstadistica(){
+    calificacionminima.textContent = Estadistica.modificarCalificacionMinima(); 
+}
+
+function botonModificarCalificacionMinimaProgramacion(){
+    calificacionminima.textContent = Programacion.modificarCalificacionMinima(); 
+}
+
+//funcion boton modificar temas 
+
+function botonModificarTemasDeAvanceCalculo(){
+    temas.textContent = Calculo1.modificartemas(); 
+}
+
+function botonModificarTemasDeAvanceAntropologia(){
+    temas.textContent = Antropologia_Y_Valores.modificartemas(); 
+}
+function botonModificarTemasDeAvanceFisica(){
+    temas.textContent = Fisica1.modificartemas(); 
+}
+
+function botonModificarTemasDeAvanceLabFisica(){
+    temas.textContent = LabFisica.modificartemas(); 
+}
+
+function botonModificarTemasDeAvanceManufactura(){
+    temas.textContent = Manufactura.modificartemas(); 
+}
+
+function botonModificarTemasDeAvanceEstadistica(){
+    temas.textContent = Estadistica.modificartemas(); 
+}
+
+function botonModificarTemasDeAvanceProgramacion(){
+    temas.textContent = Programacion.modificartemas(); 
+}
+
+//funcion de boton modificar ubicacion
+
+function botonModificarUbicacionCalculo(){
+    Ubicacion.textContent = Calculo1.modificarUbicacion(); 
+}
+
+function botonModificarUbicacionAntropologia(){
+    ubicacion.textContent = Antropologia_Y_Valores.modificarUbicacion(); 
+}
+function botonModificarUbicacionFisica(){
+    ubicacion.textContent = Fisica1.modificarUbicacion(); 
+}
+
+function botonModificarUbicacionLabFisica(){
+    ubicacion.textContent = LabFisica.modificarUbicacion(); 
+}
+
+function botonModificarUbicacionManufactura(){
+    ubicacion.textContent = Manufactura.modificarUbicacion(); 
+}
+
+function botonModificarUbicacionEstadistica(){
+    ubicacion.textContent = Estadistica.modificarUbicacion(); 
+}
+
+function botonModificarUbicacionProgramacion(){
+    ubicacion.textContent = Programacion.modificarUbicacion(); 
+}
 
 //Funciones para eliminar los datos 
 
@@ -792,5 +1108,45 @@ function botonEliminarInscritos() {
         alert("Los inscritos fueron retirados con exito.");
     } else {
         alert("No hay inscritos para eliminar");
+    }
+}
+
+//Botones para eliminar modalidad 
+function botonEliminarModalidad() {
+    if (modalidad.textContent !== "") {
+        modalidad.textContent = "";
+        alert("La modalidad fue eliminada con exito.");
+    } else {
+        alert("No hay modalidad registrada para eliminar.");
+    }
+}
+
+//Botones para eliminar calificacion minima de aprobacion 
+function botonEliminarCalificacionMinima() {
+    if (calificacionminima.textContent !== "") {
+        calificacionminima.textContent = "";
+        alert("La calificacion minima ha sido eliminada");
+    } else {
+        alert("No hay una calificacion minima asignada para eliminar.");
+    }
+}
+
+//Botones para eliminar los temas de avance
+function botonEliminarTemas() {
+    if (temas.textContent !== "") {
+        temas.textContent = "";
+        alert("Los temas fueron eliminados con exito.");
+    } else {
+        alert("No hay temas para eliminar");
+    }
+}
+
+//Botones para eliminar la ubicacion 
+function botonEliminarUbicacion() {
+    if (ubicacion.textContent !== "") {
+        ubicacion.textContent = "";
+        alert("La ubicacion fue eliminada con exito.");
+    } else {
+        alert("No hay ubicacion para eliminar");
     }
 }
