@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulación de Cadenas - Club Penguin Style</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #66ccff; /* Color azul estilo Club Penguin */
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://img.freepik.com/vector-gratis/fondo-degradado-lineas-azules-dinamicas_23-2148995756.jpg');
+            background-size: cover;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        h1 {
+            color: #ffcc00; /* Amarillo vibrante estilo Club Penguin */
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+            background-color: #e6f7ff; /* Azul claro */
+            font-size: 1.1em;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff9900; /* Naranja estilo Club Penguin */
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffcc00;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        /* Estilos para los gifs en los laterales */
+        .gifs-laterales {
+            position: fixed;
+            top: 20%;
+            width: 150px;
+        }
+        .gif-izquierdo {
+            left: 0;
+        }
+        .gif-derecho {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GIFs laterales estilo Club Penguin -->
+    <img class="gifs-laterales gif-izquierdo" src="https://preview.redd.it/a-collection-of-my-favourite-gifs-i-extracted-from-the-club-v0-zx1g0310iigd1.gif?width=640&crop=smart&auto=webp&s=764d3845cbb5d1ecf72a573126b9d0706ec94dd2" alt="Gif Club Penguin">
+    <img class="gifs-laterales gif-derecho" src="https://files.cheatswhiz.com/clubpenguin/2012/03/cartsurfer.gif" alt="Gif Club Penguin">
+
+    <div class="container">
+        <h1>Club Penguin - Cadenas</h1>
+
+        <div class="input-group">
+            <label for="cadena">Introduce una cadena:</label>
+            <input type="text" id="cadena" placeholder="Escribe aquí la cadena">
+        </div>
+
+        <div class="input-group">
+            <label for="otraCadena">Otra cadena (para concatenar):</label>
+            <input type="text" id="otraCadena" placeholder="Escribe otra cadena">
+        </div>
+
+        <div class="input-group">
+            <label for="prefijo">Prefijo:</label>
+            <input type="text" id="prefijo" placeholder="Escribe el prefijo">
+        </div>
+
+        <div class="input-group">
+            <label for="sufijo">Sufijo:</label>
+            <input type="text" id="sufijo" placeholder="Escribe el sufijo">
+        </div>
+
+        <button onclick="mostrarCadena()">Mostrar Cadena</button>
+        <button onclick="concatenar()">Concatenar</button>
+        <button onclick="invertir()">Invertir</button>
+        <button onclick="esVacia()">¿Es vacía?</button>
+        <button onclick="contiene()">¿Contiene subcadena?</button>
+        <button onclick="comienzaCon()">¿Comienza con prefijo?</button>
+        <button onclick="terminaCon()">¿Termina con sufijo?</button>
+        <button onclick="longitud()">Longitud</button>
+        <button onclick="aMayusculas()">A Mayúsculas</button>
+        <button onclick="aMinusculas()">A Minúsculas</button>
+
+        <div id="resultado">Resultado aquí</div>
+    </div>
+
+    <script src="cadenas.js"></script>
+</body>
+</html>
