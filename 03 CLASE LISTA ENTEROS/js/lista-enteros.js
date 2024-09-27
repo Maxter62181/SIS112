@@ -13,6 +13,26 @@ class ListaEnteros {
             this.lista.splice(index, 1);
         }
     }
+
+    eliminarPorIndice(indice) {
+        if (indice >= 0 && indice < this.lista.length) {
+            this.lista.splice(indice, 1); // Elimina el valor en el índice específico
+        }
+    }
+
+    buscarDato() {
+        let valorBuscado;
+        let posicion;
+        do {
+            valorBuscado = parseInt(prompt("Ingresa el número que deseas buscar en la lista:"));
+            posicion = this.lista.indexOf(valorBuscado);
+            if (posicion === -1) {
+                alert("Error: El número no existe en la lista. Inténtalo de nuevo.");
+            }
+        } while (posicion === -1); // Repite mientras el número no exista en la lista
+
+        alert(`El número ${valorBuscado} fue encontrado en la posición ${posicion}.`);
+    }
 }
 
 
@@ -41,6 +61,20 @@ let miLista = new ListaEnteros();
         function actualizarLista() {
             const listaDiv = document.getElementById('listaEnteros');
             listaDiv.textContent = `Lista: [${miLista.lista.join(', ')}]`;
+        }
+
+        function eliminarPorIndice() {
+            let indice;
+            do {
+                indice = parseInt(prompt("Ingresa el índice positivo que deseas eliminar:"));
+            } while (isNaN(indice) || indice < 0 || indice >= miLista.lista.length); // Verifica si es un índice válido
+            
+            miLista.eliminarPorIndice(indice);
+            actualizarLista();
+        }
+
+        function buscarDato() {
+            miLista.buscarDato();
         }
 
 miLista.agregar(5);
