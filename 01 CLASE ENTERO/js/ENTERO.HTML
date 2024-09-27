@@ -7,40 +7,124 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #2c2c2c;
+            color: white;
+        }
         .container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
             margin-top: 50px;
+        }
+        .img-logo {
+            width: 200px; /* Ajusta el tamaño según sea necesario */
+            margin-right: 20px; /* Espacio entre la imagen y el contenido */
+        }
+        .text-container {
+            flex-grow: 1;
+        }
+        h1 {
+            color: #e0b0ff;
         }
         .input-group-text {
             font-weight: bold;
+            background-color: #333;
+            color: #fff;
+        }
+        .form-control {
+            background-color: #555;
+            color: #fff;
+        }
+        .btn {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        /* Botones con colores personalizados */
+        .btn-primary {
+            background-color: #9932CC;
+            border-color: #9932CC;
+        }
+        .btn-success {
+            background-color: #32CD32;
+            border-color: #32CD32;
+        }
+        .btn-warning {
+            background-color: #FF4500;
+            border-color: #FF4500;
+        }
+        .btn-danger {
+            background-color: #DC143C;
+            border-color: #DC143C;
+        }
+        /* Otros colores personalizados de los botones */
+        .btn-especial-verde {
+            background-color: #228B22;
+        }
+        .btn-especial-morado {
+            background-color: #9370DB;
+        }
+        .btn-especial-rosa {
+            background-color: #FF1493;
+        }
+        .btn-especial-amarillo {
+            background-color: #FFD700;
+        }
+        .btn-especial-azul {
+            background-color: #4682B4;
+        }
+        .btn-especial-pascal {
+            background-color: #6A5ACD;
+        }
+        /* Asegurar que el texto sea blanco o negro según contraste */
+        .btn {
+            color: white;
+        }
+        .btn-dark-text {
+            color: black;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">Manipulación de Entero</h1>
-        
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Ingrese un número</span>
-                    <input type="number" class="form-control" id="enteroInput" placeholder="Número entero">
-                </div>
-                
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary" onclick="cargarNum()">CARGAR ENTERO</button>
-                    <button class="btn btn-success" onclick="MostrarNum()">MOSTRAR NUMERO ENTERO</button>
-                    <button class="btn btn-warning" onclick="IngrementarNumero()">INCREMENTAR NUMERO</button>
-                    <button class="btn btn-danger" onclick="DecrementarNumero()">DISMINUIR NUMERO</button>
-                    <button class="btn btn-primary" style="background-color: green;"="btn btn-danger" onclick="esParImparNum()">ES PAR O IMPAR</button>
-                    <button class="btn btn-danger" onclick="PositiveNegative()">NEGATIVO O POSITIVO?</button>
-                    <button class="btn btn-danger" onclick="esNumeroPerfecto()">ES NUMERO PERFECTO?</button>
-                    <button class="btn btn-danger" onclick="esNumeroPrimo()">ES NUMERO PRIMO?</button>
-                    <button class="btn btn-danger" onclick="PillarFibonacci()">PILLAR EN SERIE DE FIBONACCI</button>
-                    <button class="btn btn-danger" onclick="generarFibonacci()">SERIE DE FIBONACCI</button>
-                </div>
-                
-                <div class="mt-4">
-                    <h3 id="resultado" class="text-center">Resultado: </h3>
+        <!-- Imagen añadida -->
+        <img src="LOGO.png" alt="Logo" class="img-logo">
+
+        <!-- Contenedor de texto original -->
+        <div class="text-container">
+            <h1 class="text-center mb-4">Manipulación de Entero</h1>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Ingrese un número</span>
+                        <input type="number" class="form-control" id="enteroInput" placeholder="Número entero">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" onclick="cargarNum()">CARGAR ENTERO</button>
+                        <button class="btn btn-success" onclick="MostrarNum()">MOSTRAR NUMERO ENTERO</button>
+                        <button class="btn btn-warning" onclick="IngrementarNumero()">INCREMENTAR NUMERO</button>
+                        <button class="btn btn-danger" onclick="DecrementarNumero()">DISMINUIR NUMERO</button>
+                        <button class="btn btn-especial-verde" onclick="esParImparNum()">ES PAR O IMPAR</button>
+                        <button class="btn btn-especial-morado" onclick="PositiveNegative()">NEGATIVO O POSITIVO?</button>
+                        <button class="btn btn-especial-rosa" onclick="esNumeroPerfecto()">ES NUMERO PERFECTO?</button>
+                        <button class="btn btn-especial-amarillo" onclick="esNumeroPrimo()">ES NUMERO PRIMO?</button>
+                        <button class="btn btn-especial-azul" onclick="PillarFibonacci()">PILLAR EN SERIE DE FIBONACCI</button>
+                        <button class="btn btn-especial-verde" onclick="generarFibonacci()">SERIE DE FIBONACCI</button>
+                        <button class="btn btn-especial-morado" onclick="esNumeroArmstrong()">ES UN NUMERO ARMSTRONG?</button>
+                        <button class="btn btn-especial-rosa" onclick="esNumeroPerfectoGeneralizado()">ES UN PERFECTO GENERALIZADO?</button>
+                        <button class="btn btn-especial-pascal" onclick="mostrarFilaPascal()">MOSTREMOS LA FILA DE PASCAL</button>
+                        <button class="btn btn-primary" onclick="mostrarCifradoCesar()">MOSTRAR CIFRADO CÉSAR</button>
+                        <button class="btn btn-success" onclick="mostrarPrimoGemelo()">MOSTRAR PRIMOS GEMELOS</button>
+                        <button class="btn btn-warning" onclick="mostrarFactoresPrimos()">MOSTRAR FACTORES PRIMOS</button>
+                        <button class="btn btn-danger" onclick="mostrarCatalan()">MOSTRAR NÚMERO CATALÁN</button>
+                        <button class="btn btn-especial-azul" onclick="mostrarMersenne()">MOSTRAR NÚMERO MERSENNE</button>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 id="resultado" class="text-center">Resultado: </h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,8 +132,8 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Archivo de JavaScript -->
     <script src="Entero.js"></script>
 </body>
-</html>         
+</html>
