@@ -1,3 +1,7 @@
+import random
+import string
+
+
 class Cadena:
     def __init__(self, cadena):
         self.cadena = cadena
@@ -41,6 +45,49 @@ class Cadena:
     # Obtiene la cadena transformada a minúsculas
     def a_minusculas(self):
         return self.cadena.lower()
+    
+    def convertir_a_romano(self):
+        # Intentar convertir la cadena a un número entero
+        try:
+            numero = int(self.cadena)
+        except ValueError:
+            return "La cadena no es un número válido."
+
+        # Verificar si el número está dentro del rango permitido
+        if numero <= 0 or numero >= 4000:
+            return "Número fuera de rango. Ingrese un número entre 1 y 3999."
+
+        # Tabla de conversión a números romanos
+        valores_romanos = [
+            (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+            (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
+            (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')
+        ]
+
+        resultado = ""
+        for valor, simbolo in valores_romanos:
+            while numero >= valor:
+                resultado += simbolo
+                numero -= valor
+
+        return resultado
+    def generar_texto_aleatorio(self, num_palabras):
+        palabras = []
+        for _ in range(num_palabras):
+            # Generar una palabra aleatoria con longitud entre 3 y 8 caracteres
+            longitud_palabra = random.randint(3, 8)
+            palabra = ''.join(random.choices(string.ascii_letters + string.digits, k=longitud_palabra))
+            palabras.append(palabra)
+        # Unir las palabras con un espacio y asignar a la cadena
+        self.cadena = ' '.join(palabras)
+        return self.cadena
+    
+    def convertir_a_ascii(self, numero):
+        if 0 <= numero <= 127:
+            return chr(numero)
+        else:
+            return "El número debe estar en el rango de 0 a 127."
+
 
 
 # Menú interactivo
@@ -59,7 +106,10 @@ def menu():
         print("8. Obtener la longitud de la cadena")
         print("9. Convertir a mayúsculas")
         print("10. Convertir a minúsculas")
-        print("11. Salir")
+        print("11. Convertir número en la cadena a romano")
+        print("12. Generar texto aleatorio")
+        print("13. Convertir número a ASCII")
+        print("14. Salir")
         
         opcion = input("Elige una opción: ")
         
@@ -90,6 +140,17 @@ def menu():
         elif opcion == '10':
             print("Cadena en minúsculas:", cadena.a_minusculas())
         elif opcion == '11':
+            print("Número en romano:", cadena.convertir_a_romano())
+        elif opcion == '12':
+            num_palabras = int(input("¿Cuántas palabras aleatorias quieres generar?: "))
+            print("Texto aleatorio generado:", cadena.generar_texto_aleatorio(num_palabras))
+        elif opcion == '13':
+            try:
+                numero = int(input("Introduce un número entre 0 y 127: "))
+                print("Número convertido a ASCII:", cadena.convertir_a_ascii(numero))
+            except ValueError:
+                print("Por favor, introduce un número válido.")
+        elif opcion == '14':
             print("Saliendo del programa.")
             break
         else:
