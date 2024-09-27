@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MATEO ZAMBRANA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1b1b1b; /* Fondo oscuro */
+            color: #f5f5f5; /* Texto claro */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #550000; /* Rojo oscuro */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Resplandor rojo */
+        }
+
+        .main-title {
+            font-size: 2rem;
+            color: #ff3333; /* Rojo brillante */
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px #000000; /* Efecto de sombra */
+        }
+
+        nav {
+            background-color: #2b2b2b;
+            padding: 15px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+        }
+
+        .menu li a {
+            color: #ff3333;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: 2px solid #ff3333;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu li a:hover {
+            background-color: #ff3333;
+            color: #1b1b1b;
+        }
+
+        .info {
+            background-color: #2b2b2b;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        .info p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .logo-fusion {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            height: auto;
+        }
+
+        footer {
+            background-color: #2b2b2b;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+
+        footer p {
+            color: #ff3333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="Logo Chara Dremur.png" alt="Logo del personaje" class="logo">
+        </div>
+        <h1 class="main-title">WELCOME TO BLOODHELLS WEBSITE</h1>
+    </header>
+    
+    <nav>
+        <ul class="menu">
+            <li><a href="http://zambrana.somee.com/lista-enteros.HTML">Lista de Enteros</a></li>
+            <li><a href="http://zambrana.somee.com/ENTERO.HTML">Enteros</a></li>
+            <li><a href="http://zambrana.somee.com/cadenas.HTML">Cadenas</a></li>
+        </ul>
+    </nav>
+
+    <div class="info">
+        <p><strong>Nombre:</strong> Mateo Gabriel Zambrana Berbetti</p>
+        <p><strong>Carrera:</strong> Ingeniería Industrial</p>
+        <p><strong>Universidad:</strong> Universidad Católica Boliviana "San Pablo"</p>
+        <p><strong>Asignatura:</strong> Programación 1</p>
+        <p><strong>Semestre:</strong> Segundo</p>
+        <img src="Caratula.png"class="logo-fusion">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Estilo por Oscuridad</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Enteros - Just Shapes & Beats Style</title>
+    <style>
+        /* Estilo general */
+        body {
+            background-color: #38033a; /* Color de fondo similar al de la imagen */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff; /* Texto en blanco */
+        }
+
+        /* Contenedor principal */
+        .container {
+            text-align: center;
+            background-color: #520f53;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 200, 0.6);
+            width: 400px;
+            border: 2px solid #ff00e4; /* Borde brillante */
+        }
+
+        h1 {
+            color: #f54fff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo de los botones */
+        .btn-fluffy {
+            background-color: #01fce4;
+            border: 3px solid #f200d8;
+            border-radius: 20px; /* Borde suave y fluffy */
+            padding: 15px 30px;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 227, 0.7);
+        }
+
+        /* Hover de los botones */
+        .btn-fluffy:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 227, 1);
+        }
+
+        /* Triángulos de diseño */
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 40px solid #f54fff;
+            display: inline-block;
+            margin: 10px;
+            transform: rotate(90deg);
+        }
+
+        /* Contenedor de botones */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Estilo de la lista */
+        #listaEnteros {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            background-color: #661e66;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 200, 0.7);
+        }
+
+        /* Estilo de la entrada */
+        #inputValor {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ff00e4;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(255, 0, 200, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lista de Enteros</h1>
+
+        <!-- Campo de entrada para agregar o eliminar valores -->
+        <input type="number" id="inputValor" placeholder="Introduce un valor">
+
+        <!-- Botones con funciones JS -->
+        <div class="button-container">
+            <div class="triangle"></div>
+            <button class="btn-fluffy" onclick="agregarValor()">Agregar</button>
+            <div class="triangle"></div>
+        </div>
+        <div class="button-container">
+            <div class="triangle"></div>
+            <button class="btn-fluffy" onclick="eliminarValor()">Eliminar</button>
+            <div class="triangle"></div>
+        </div>
+
+        <!-- Lista de enteros actualizada -->
+        <div id="listaEnteros">Lista: []</div>
+    </div>
+<script src="lista-enteros.js"></script>
+    
+</body>
+</html>
