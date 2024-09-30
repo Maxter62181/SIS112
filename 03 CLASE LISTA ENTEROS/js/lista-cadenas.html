@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cadenas - Espacio</title>
+    <style>
+        /* Estilo básico para la página */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: radial-gradient(circle, rgba(15, 15, 45, 1) 0%, rgba(0, 0, 10, 1) 100%);
+            color: white;
+        }
+
+        /* Contenedor principal */
+        .universo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Formulario */
+        .contenedor-formulario {
+            margin-bottom: 20px;
+        }
+
+        /* Input de texto */
+        #cadenaInput, #indiceInput {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+            margin: 10px 5px;
+        }
+
+        /* Botones espaciales con paletas de colores interactivos */
+        .boton-espacial {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background: linear-gradient(135deg, #ff7eb3, #ff65a3);
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.5s, transform 0.5s;
+            font-size: 1rem;
+        }
+
+        .boton-espacial:hover {
+            background: linear-gradient(135deg, #65d6ce, #e05d5d);
+            transform: scale(1.1);
+        }
+
+        .boton-espacial:active {
+            background: linear-gradient(135deg, #ff65a3, #ff7eb3);
+            transform: scale(1);
+        }
+
+        /* Lista de cadenas */
+        .lista-espacial {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .lista-espacial li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lista-espacial li button {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Animación de galaxias */
+        .galaxia {
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            top: -50vh;
+            left: -50vw;
+            background: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fes%2Fgifs%2Fsearch%2Funiverso%2F&psig=AOvVaw1I_kvFulgOLlOLzQHi4QJh&ust=1727796668056000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJChk6n-6ogDFQAAAAAdAAAAABAh') no-repeat center center;
+            background-size: cover;
+            opacity: 0.3;
+            animation: rotar 60s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotar {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animación de planetas */
+        .planetas {
+            position: absolute;
+            width: 150vw;
+            height: 150vh;
+            background: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fes%2Fgifs%2Fsearch%2Funiverso%2F&psig=AOvVaw1I_kvFulgOLlOLzQHi4QJh&ust=1727796668056000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJChk6n-6ogDFQAAAAAdAAAAABAh') no-repeat center center;
+            background-size: contain;
+            opacity: 0.5;
+            animation: rotar 120s linear infinite;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="universo">
+        <h1>Lista de Cadenas en el Espacio</h1>
+
+        <div class="contenedor-formulario">
+            <input type="text" id="cadenaInput" placeholder="Ingresa una cadena...">
+            <input type="number" id="indiceInput" placeholder="Ingresa índice...">
+
+            <!-- Botones para cada función -->
+            <button id="agregarBtn" class="boton-espacial">Agregar</button>
+            <button id="eliminarBtn" class="boton-espacial">Eliminar Cadena</button>
+            <button id="eliminarPorIndiceBtn" class="boton-espacial">Eliminar por Índice</button>
+            <button id="buscarBtn" class="boton-espacial">Buscar Cadena</button>
+            <button id="ordenarBtn" class="boton-espacial">Ordenar Alfabéticamente</button>
+        </div>
+
+        <ul id="listaElementos" class="lista-espacial"></ul>
+    </div>
+
+    <div class="galaxia"></div>
+    <div class="planetas"></div>
+
+    <script src="lista-cadenas.js"></script>
+</body>
+</html>
