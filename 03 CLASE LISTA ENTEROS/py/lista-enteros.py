@@ -93,3 +93,6 @@ def menu():
 
 # Ejecutar el menú
 menu()
+
+sexo = 1 
+

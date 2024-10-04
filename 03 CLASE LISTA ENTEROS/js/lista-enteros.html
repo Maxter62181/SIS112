@@ -3,67 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Enteros - Just Shapes & Beats Style</title>
+    <title>Lista de Enteros - Fiery Style</title>
     <style>
         /* Estilo general */
         body {
-            background-color: #38033a; /* Color de fondo similar al de la imagen */
-            font-family: Arial, sans-serif;
+            background-color: #1a0000; /* Fondo oscuro estilo volcánico */
+            font-family: 'Verdana', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: #fff; /* Texto en blanco */
+            color: #ff5e00; /* Color de texto naranja encendido */
         }
 
         /* Contenedor principal */
         .container {
             text-align: center;
-            background-color: #520f53;
+            background-color: #330000;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 0, 200, 0.6);
+            box-shadow: 0 0 40px rgba(255, 69, 0, 0.9); /* Brillo de fuego */
             width: 400px;
-            border: 2px solid #ff00e4; /* Borde brillante */
+            border: 2px solid #ff4000; /* Borde ardiente */
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         h1 {
-            color: #f54fff;
-            font-size: 2.5rem;
+            color: #ff5e00;
+            font-size: 2rem;
             margin-bottom: 20px;
         }
 
         /* Estilo de los botones */
-        .btn-fluffy {
-            background-color: #01fce4;
-            border: 3px solid #f200d8;
-            border-radius: 20px; /* Borde suave y fluffy */
-            padding: 15px 30px;
+        .btn-flame {
+            background-color: #ff3300; /* Rojo fuego */
+            border: 2px solid #ff5e00;
+            border-radius: 8px;
+            padding: 10px 20px;
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            margin: 10px 0;
+            margin: 5px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 227, 0.7);
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7);
         }
 
-        /* Hover de los botones */
-        .btn-fluffy:hover {
+        /* Hover y animación de los botones */
+        .btn-flame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 69, 0, 1);
+            background-color: #ff1a00;
+        }
+
+        /* Animación de click */
+        .btn-flame:active {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0, 255, 227, 1);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1);
         }
 
         /* Triángulos de diseño */
         .triangle {
             width: 0;
             height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-bottom: 40px solid #f54fff;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid #ff6600;
             display: inline-block;
-            margin: 10px;
+            margin: 5px;
             transform: rotate(90deg);
         }
 
@@ -72,28 +81,31 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         /* Estilo de la lista */
         #listaEnteros {
             margin-top: 20px;
-            font-size: 1.5rem;
-            background-color: #661e66;
-            padding: 15px;
+            font-size: 1.2rem;
+            background-color: #400000;
+            padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 0, 200, 0.7);
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
+            color: #ffcc99;
         }
 
         /* Estilo de la entrada */
         #inputValor {
             padding: 10px;
             border-radius: 10px;
-            border: 2px solid #ff00e4;
+            border: 2px solid #ff3300;
             margin-bottom: 15px;
             font-size: 1rem;
             width: 80%;
-            box-shadow: 0 0 10px rgba(255, 0, 200, 0.5);
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+            background-color: #260000;
+            color: #ffcc99;
         }
     </style>
 </head>
@@ -108,29 +120,45 @@
         <!-- Botones con funciones JS -->
         <div class="button-container">
             <div class="triangle"></div>
-            <button class="btn-fluffy" onclick="agregarValor()">Agregar</button>
+            <button class="btn-flame" onclick="agregarValor()">Agregar</button>
             <div class="triangle"></div>
         </div>
         <div class="button-container">
             <div class="triangle"></div>
-            <button class="btn-fluffy" onclick="eliminarValor()">Eliminar</button>
+            <button class="btn-flame" onclick="eliminarValor()">Eliminar</button>
             <div class="triangle"></div>
         </div>
         <div class="button-container">
             <div class="triangle"></div>
-            <button class="btn-fluffy" onclick="eliminarPorIndice()">Eliminar por Indice</button>
+            <button class="btn-flame" onclick="eliminarPorIndice()">Eliminar por Índice</button>
             <div class="triangle"></div>
         </div>
-        <div class="button-container"></div>
+        <div class="button-container">
             <div class="triangle"></div>
-            <button class="btn-fluffy" onclick="buscarDato()">Buscar Dato</button>
+            <button class="btn-flame" onclick="buscarDato()">Buscar Dato</button>
+            <div class="triangle"></div>
+        </div>
+        <div class="button-container">
+            <div class="triangle"></div>
+            <button class="btn-flame" onclick="verificarParOImpar()">Par o Impar</button>
+            <div class="triangle"></div>
+        </div>
+        <div class="button-container">
+            <div class="triangle"></div>
+            <button class="btn-flame" onclick="verificarNumeroPerfecto()">Num. Perfecto</button>
+            <div class="triangle"></div>
+        </div>
+        <div class="button-container">
+            <div class="triangle"></div>
+            <button class="btn-flame" onclick="mostrarTrianguloPascal()">Triángulo Pascal</button>
             <div class="triangle"></div>
         </div>
 
         <!-- Lista de enteros actualizada -->
         <div id="listaEnteros">Lista: []</div>
     </div>
-<script src="lista-enteros.js"></script>
     
+<script src="lista-enteros.js"></script>
+
 </body>
 </html>
