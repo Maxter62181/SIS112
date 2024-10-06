@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanets wiki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #2b2d42, #1a1a2e) no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .main-container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(30, 30, 50, 0.8); /* Fondo semitransparente oscuro */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(150, 0, 250, 0.3); /* Sombra morada */
+            color: #ddd;
+        }
+
+        .main-container h1, .main-container p {
+            margin: 20px 0;
+            text-align: justify;
+        }
+
+        /* Interfaz con flecha e imágenes */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .section-header img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .section-header img:hover {
+            transform: rotate(90deg); /* Efecto de rotación al hacer hover */
+        }
+
+        /* Contenedor oculto que se despliega con la flecha */
+        .hidden-content {
+            display: none; /* Oculto inicialmente */
+            margin-top: 20px;
+        }
+
+        .hidden-content.active {
+            display: block;
+        }
+
+        /* Contenedor de la burbuja de texto que envuelve la barra de desplazamiento */
+        .bubble-container {
+            padding: 15px;
+            background: rgba(40, 40, 70, 0.9); /* Fondo más oscuro y transparente */
+            border-radius: 10px;
+            border: 2px solid #888;
+            overflow: hidden;
+            width: 80%;  /* Mantener el ancho de la página menos el 20% */
+            margin: 0 auto;
+        }
+
+        /* Contenedor de los elementos desplazables con scroll horizontal */
+        .scroll-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;  /* Scroll horizontal */
+            padding: 10px;
+            background-color: #1d1d2c;
+            border-radius: 10px;
+            border-top: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+            max-width: 100%; /* Evitar desbordamiento */
+        }
+
+        .scroll-item {
+            flex: 0 0 auto;
+            width: 150px;
+            height: 150px;
+            background-color: #3d2a50;
+            display: flex;              /* Habilita Flexbox */
+            flex-direction: column;      /* Coloca los elementos en columna (imagen y texto) */
+            justify-content: center;     /* Centra verticalmente */
+            align-items: center;         /* Centra horizontalmente */
+            text-align: center;          /* Alinea el texto en el centro */
+            color: white;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .scroll-item:hover {
+            transform: scale(1.1);
+        }
+
+        .scroll-item img {
+            width: 100px;  /* Fija el ancho a 100px */
+            height: 100px; /* Fija la altura a 100px */
+            object-fit: contain; /* La imagen se ajustará dentro del contenedor sin deformarse */
+        }
+
+        .scroll-item p {
+            margin-top: 5px;  /* Añade un espacio de 5px entre la imagen y el texto */
+            font-size: 14px;  /* Tamaño del texto */
+            color: white;     /* Asegura que el texto sea visible */
+        }
+
+        /* Estilos para la barra de desplazamiento */
+        .scroll-container::-webkit-scrollbar {
+            height: 10px; /* Ancho de la barra de desplazamiento horizontal */
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: #444; /* Color de fondo de la barra */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #888; /* Color de la barra */
+            border-radius: 10px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: #aaa; /* Color de la barra cuando se pasa el cursor */
+        }
+    </style>
+</head>
+<body>
+
+    <header style="background: #12121c; color: #fff; padding: 15px; text-align: center;">
+        <h1 style="margin: 0;">Exoplanets Wiki - SpaceApps NASA 2024</h1>
+        <h3 style="margin: 0;">Team: God Slayers++</h3>
+        
+    
+        <div style="margin-top: 20px; width: 80%; height: 85px; background-color: #1d1d2c; margin-left: auto; margin-right: auto; border-radius: 5px; overflow: hidden;">
+            <img src="BannerGif.gif" alt="Descripción del GIF" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </header>
+    
+
+    <div class="content">
+        <!-- Contenedor principal para el contenido del sitio web -->
+        <div class="main-container">
+
+            <h1>
+                <style>
+                    /* Estilos para centrar todo el contenido */
+                    h1 {
+                        display: flex;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    }
+            
+                    figure {
+                        text-align: center;
+                        display: inline-block;
+                        margin: 20px;
+                        position: relative;
+                    }
+            
+                    figure img {
+                        width: 150px;  /* Ancho fijo de 150px */
+                        height: 150px; /* Alto fijo de 150px */
+                        object-fit: cover; /* Hace que la imagen se recorte si es necesario para llenar el área sin deformarse */
+                        transition: transform 0.3s ease;
+                    }
+            
+                    figure:hover img {
+                        transform: scale(1.05); /* Efecto de zoom cuando el cursor pasa sobre la imagen */
+                    }
+            
+                    .tooltip {
+                        position: absolute;
+                        bottom: 110%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        visibility: hidden;
+                        background-color: rgba(0, 0, 0, 0.75);
+                        color: #fff;
+                        text-align: center;
+                        padding: 8px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        width: 250px;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                        z-index: 1;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+            
+                    figure:hover .tooltip {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+            
+                    figcaption {
+                        font-size: 12px;
+                        color: #666;
+                        margin-top: 5px;
+                    }
+                </style>
+            
+                <figure>
+                    <img src="Qatar-6bdecoracion.png" alt="Descripción de la imagen">
+                    <figcaption></figcaption>
+                    <div class="tooltip">Qatar-6 b</div>
+                </figure>
+                
+                <figure>
+                    <img src="NGTS-8bdecoracion.png" alt="Descripción de la imagen">
+                    <figcaption></figcaption>
+                    <div class="tooltip">NGTS-8 b</div>
+                </figure>
+                
+                <figure>
+                    <img src="HD220197bdecoracion.png" alt="Descripción de la imagen">
+                    <figcaption></figcaption>
+                    <div class="tooltip">HD 220197 b</div>
+                </figure>
+                
+                <figure>
+                    <img src="Kepler-448cdecoracion.png" alt="Descripción de la imagen">
+                    <figcaption></figcaption>
+                    <div class="tooltip">Kepler-448 c</div>
+                </figure>
+            </h1>
+
+            <h1>"Exoplanets: Exploring New Worlds Beyond Our Solar System"</h1>
+            <p style="margin-left: 10px; margin-bottom: 20px;"">
+                Exoplanets, or planets beyond our solar system, have become one of the most exciting areas of astronomical research. 
+                Since the first discovery of an exoplanet in the 1990s, scientists have identified thousands of these distant worlds, 
+                each offering unique insights into the diversity and complexity of planetary systems in the universe. 
+            </p>
+
+            <p style="margin-left: 10px; margin-bottom: 20px;"">
+                Some exoplanets are rocky and Earth-like, while others are gas giants or ice worlds, orbiting stars at varying distances. 
+                The study of exoplanets not only deepens our understanding of how planetary systems form and evolve but also raises intriguing 
+                possibilities about the existence of life elsewhere in the cosmos. 
+            </p>
+            <p style="margin-left: 10px; margin-bottom: 20px;"">This presentation will explore the methods used to detect exoplanets, the fascinating variety of worlds discovered, 
+                and the potential for finding habitable planets beyond our own, but first, we have to answer one question.
+            </p>
+
+            <h2>What is an Exoplanet?</h2>
+            <p style="margin-left: 40px; margin-bottom: 20px; margin-right: 10px;"">
+                <figure style="width: 150px; float: right; margin-left: 15px; overflow: hidden; text-align: center;">
+                    <img src="Exoplaneta.png" alt="Descripción de la imagen"
+                         style="width: 100%; height: 160px; object-fit: cover; object-position: center;">
+                    <figcaption style="font-size: 12px; color: #98d8c3; margin-top: 5px;">Exoplanet 55 Cancri-e NASA</figcaption>
+                </figure>
+                
+                An exoplanet, or extrasolar planet, is a planet that exists outside of our solar system, orbiting 
+                a star other than our Sun. Unlike the planets in our solar system, exoplanets are located 
+                in distant star systems, and they vary widely in size, composition, and distance from their host stars. 
+                Some exoplanets are similar to Earth, with rocky surfaces, while others are gas giants like Jupiter or ice worlds.
+            </p>
+
+            <p style="margin-left: 10px; margin-bottom: 20px; margin-right: 10px;"">
+                Scientists study exoplanets to understand how planets form and evolve, and they are especially interested 
+                in finding exoplanets that might be capable of supporting life. The discovery of exoplanets has expanded our 
+                understanding of the universe and raised the possibility of habitable worlds beyond Earth.
+            </p>
+            <p></p>
+
+            <h2>What is the importance of learning about exoplanets?</h2>
+            <p>
+                Learning about exoplanets is crucial because it expands our understanding of the universe and how planetary systems 
+                form and evolve. By studying these distant worlds, scientists can compare them to our own solar system, identifying 
+                commonalities and differences that help refine theories of planet formation. Discoveries of exoplanets with diverse sizes, 
+                compositions, and orbits demonstrate that the processes that shape planets are more varied and complex than previously thought. 
+                This knowledge provides valuable insight into the conditions that give rise to planets and, potentially, life itself.
+            </p>
+
+            <p>
+                Another important reason to study exoplanets is the search for life beyond Earth. Some exoplanets are located in the 
+                "habitable zone" of their stars, meaning they are at just the right distance for liquid water to exist, a key ingredient 
+                for life as we know it. By learning more about these potentially habitable worlds, scientists can focus their search for 
+                life on planets that are most likely to support it. This search not only advances our understanding of life's origins but 
+                also addresses one of humanity's most profound questions: Are we alone in the universe?
+            </p>
+
+            <p>
+                Finally, studying exoplanets drives technological advancements and inspires future space exploration. The tools and methods 
+                developed to detect and study exoplanets—such as powerful telescopes and innovative data analysis techniques—also have 
+                applications in other areas of science and technology. In addition, the possibility of future missions to explore exoplanets 
+                or their moons fuels public interest in space, encouraging the next generation of scientists and engineers to push the boundaries 
+                of exploration.
+
+                <figure style="text-align: center;">
+                    <img src="Importancia.png" alt="Descripción de la imagen" style="width: 400px;">
+                    <figcaption style="font-size: 12px; color: #98d8c3; margin-top: 5px;">"Somewhere, something incredible is waiting to be known." - Carl Sagan (Cosmos: A Personal Voyage) 1980.</figcaption>
+                </figure>
+            </p>
+            <p></p>
+
+            <h2> Some curius facts about some Exoplanets </h2>
+            <p>
+                <h3> - Exoplanets with multiple suns: </h3>
+                <figure style="width: 150px; float: left; margin-right: 15px; overflow: hidden; text-align: center;">
+                    <img src="Kepler16-bcurioso.png" alt="Descripción de la imagen"
+                         style="width: 100%; height: 110px; object-fit: cover; object-position: center;">
+                    <figcaption style="font-size: 12px; color: #98d8c3; margin-top: 5px;">Exoplanet Kepler-16 b NASA</figcaption>
+                </figure>
+                Kepler-16b is a circumbinary planet, meaning it orbits two stars rather than just one, like our Sun. Discovered by NASA's 
+                Kepler mission in 2011, Kepler-16b is about the size of Saturn and lies roughly 200 light-years away from Earth. 
+                This planet has inspired comparisons to the iconic scene from Star Wars with its dual sunsets, though Kepler-16b 
+                itself is likely cold and inhospitable due to its distance from its twin suns. Despite this, its discovery challenged 
+                prior assumptions about planetary formation, showing that stable planetary orbits are possible in such complex systems.
+            </p>
+
+            <p>
+                Kepler-16b orbits its two stars in a nearly circular path, taking 229 Earth days to complete one orbit. The stars 
+                it orbits are quite different: one is a K-type star, and the other is an even smaller 
+                red dwarf. Despite having two suns, the planet is located beyond its system's habitable zone, making it too cold for 
+                liquid water. Its discovery opened doors for searching for habitable planets in binary star systems, suggesting that more 
+                diverse planetary environments could exist in the universe.
+            </p>
+
+            <p>
+                <h3> - Super-Earths (Kepler-452 b): </h3>
+                <figure style="width: 150px; float: left; margin-right: 15px; overflow: hidden; text-align: center;">
+                    <img src="Kepler-452bysuhostsun.png" alt="Descripción de la imagen"
+                         style="width: 100%; height: 110px; object-fit: cover; object-position: center;">
+                    <figcaption style="font-size: 12px; color: #98d8c3; margin-top: 5px;">Exoplanet Kepler-452 b NASA</figcaption>
+                </figure>
+                Kepler-452b, discovered in 2015, is one of the most famous examples of a Super-Earth. It's about 60% larger than Earth 
+                and orbits within the habitable zone of a star very similar to our Sun, about 1,400 light-years away. This "cousin" of 
+                Earth raised excitement because it has the potential to harbor liquid water, and possibly life, based on its size and the 
+                estimated temperature of its surface. Though it's still unclear if Kepler-452b is rocky like Earth, its discovery has fueled 
+                interest in finding habitable planets among the Super-Earth class.
+            </p>
+
+            <p>
+                Kepler-452b's host star, Kepler-452, is very similar to our Sun but about 1.5 billion years older. This is particularly 
+                interesting because it means that if Kepler-452b had conditions similar to Earth, its star would be supplying more energy 
+                over time as it ages, which might lead to a "runaway greenhouse effect." This effect could potentially turn the planet's 
+                surface into a hotter, drier environment similar to Venus. Kepler-452b's star is also slightly larger and brighter than the 
+                Sun.
+            </p>
+
+            <p>
+                <h3> - The wild weather of exoplanets (HD 189733 b): </h3>
+                <figure style="width: 150px; float: left; margin-right: 15px; overflow: hidden; text-align: center;">
+                    <img src="HD189733bysuclimacaotico.png" alt="Descripción de la imagen"
+                         style="width: 100%; height: 110px; object-fit: cover; object-position: center;">
+                    <figcaption style="font-size: 12px; color: #98d8c3; margin-top: 5px;">Exoplanet HD 189733 b NASA</figcaption>
+                </figure>
+                HD 189733b is a "hot Jupiter" exoplanet located 64 light-years away, known for its extreme weather patterns. It was first 
+                discovered in 2005 and is notable for its cobalt blue appearance, which might suggest a serene ocean world, but in reality, 
+                it's far from calm. The planet's atmosphere is filled with silicate particles, leading to sideways "glass rain," driven by 
+                winds that travel at over 5,400 miles per hour. These extreme conditions provide valuable insights into atmospheric dynamics 
+                on distant worlds and challenge scientists to rethink planetary weather as we know it.
+            </p>
+
+            <p>
+                The intense blue color of HD 189733b is thought to come from its high clouds made of silicate particles, which scatter blue 
+                light. However, this exoplanet's atmosphere is filled with more mysteries. Observations show that 
+                the planet's atmosphere contains trace amounts of water vapor and methane, but the extreme heat—exceeding 1,000°C 
+                (1,800°F)—means any water or methane wouldn't survive long.
+            </p>
+
+
+            <p>
+                <div style="text-align: center;">
+                    <h2 style="font-style: italic;">Up next, we'll share some insights about a few of the many exoplanets that have been discovered so far.</h2>
+                </div>
+
+            </p>
+
+            <!-- Sección con flecha e imágenes que se despliega -->
+            <div class="section-header" onclick="toggleContent()" style="margin-right: 20px;"> <!-- Ajuste de margen derecho -->
+                <h2>Terrenal Exoplanets: </h2>
+                <p style="margin-left: 10px; margin-bottom: 20px;">
+                    Terrestrial exoplanets are rocky planets with solid surfaces, similar to Earth. 
+                    They may have atmospheres and, if located in the habitable zone, could potentially support liquid water and life.
+                </p>
+                <div style="display: flex; align-items: center; margin-left: 1.5rem; margin-right: 20px;"> <!-- Ajuste de margen derecho -->
+                    <span style="margin-right: 10px; color: #720c80; cursor: pointer; background-color: white; padding: 2px 8px; border-radius: 4px; color: #720c80;">
+                        See more
+                    </span>
+                    <img src="Flecha.png" alt="Flecha" class="arrow" id="arrow-toggle">
+                </div>
+            </div>           
+                                
+
+            <!-- Contenido oculto dentro de una burbuja con scroll horizontal -->
+            <div class="hidden-content" id="hidden-content">
+                <div class="bubble-container">
+                    <div class="scroll-container">
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/Kepler-974b.html';">
+                            <img src="Kepler-974b.png" alt="Exoplanet 1">
+                            <p>Kepler-974 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/KEPLER-186F.html';">
+                            <img src="KEPLER-186f.png" alt="Exoplanet 2">
+                            <p>KEPLER-186 f</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/ProximaCentaurib.html';">
+                            <img src="ProximaCentaurib.png" alt="Exoplanet 3">
+                            <p>Proxima Centauri b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/TRAPPIST-1e.html';">
+                            <img src="TRAPPIST-1e.png" alt="Exoplanet 4">
+                            <p>TRAPPIST-1e</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/Kepler-452b.html';">
+                            <img src="Kepler-452bysuhostsun.png" alt="Exoplanet 5">
+                            <p>Kepler-452 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/Kepler-22b.html';">
+                            <img src="Kepler-22b.png" alt="Exoplanet 6">
+                            <p>Kepler-22 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/55cancriee.html';">
+                            <img src="55cancriee.png" alt="Exoplanet 7">
+                            <p>55 Cancri e</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/K2-18b.html';">
+                            <img src="K2-18b.png" alt="Exoplanet 8">
+                            <p>K2-18b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/Kepler-62f.html';">
+                            <img src="Kepler-62f.png" alt="Exoplanet 9">
+                            <p>Kepler-62 f</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/Kepler-69c.html';">
+                            <img src="Kepler-69c.png" alt="Exoplanet 10">
+                            <p>Kepler-69 c</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="KOI-4878.01.png" alt="Exoplanet 11">
+                            <p>KOI-4878.01</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Wolf1061c.png" alt="Exoplanet 12">
+                            <p>Wolf 1061 c </p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="EPIC220674823b.png" alt="Exoplanet 13">
+                            <p>EPIC 220674823 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="GJ1132c.png" alt="Exoplanet 14">
+                            <p>GJ 1132 c</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Ross128b.png" alt="Exoplanet 15">
+                            <p>Ross 128 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="TauCetie.png" alt="Exoplanet 16">
+                            <p>Tau Ceti e</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Gliese667Cc.png" alt="Exoplanet 17">
+                            <p>Gliese 667 Cc </p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="TRAPPIST-1d.png" alt="Exoplanet 18">
+                            <p>TRAPPIST-1d </p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="K2-101b.png" alt="Exoplanet 19">
+                            <p>K2-101 b </p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Gliese273b.png" alt="Exoplanet 20">
+                            <p>Gliese 273b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="KOI-812.03.png" alt="Exoplanet 21">
+                            <p>KOI-812.03</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="KOI-3255.01.png" alt="Exoplanet 22">
+                            <p>KOI-3255.01</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="KOI-2529.02.png" alt="Exoplanet 23">
+                            <p>KOI-2529.02</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Kepler-1438b.png" alt="Exoplanet 24">
+                            <p>Kepler-1438 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="K2-72e.png" alt="Exoplanet 25">
+                            <p>K2-72e</p>
+                        </div>
+                        <!-- Añade más elementos desplazables aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda sección con scroll horizontal -->
+            <div class="section-header" onclick="toggleSecondContent()" style="margin-right: 20px;"> <!-- Ajuste de margen derecho -->
+                <h2>Gaseous Exoplanets: </h2>
+                <p style="margin-left: -5px; margin-bottom: 20px;">
+                    Gaseous exoplanets, like Jupiter and Saturn in our solar system, are composed mostly of hydrogen and helium. They have thick atmospheres and may not have solid surfaces.
+                </p>
+                <div style="display: flex; align-items: center; margin-left: 1.5rem; margin-right: 20px;"> <!-- Ajuste de margen derecho -->
+                    <span style="margin-right: 10px; color: #720c80; cursor: pointer; background-color: white; padding: 2px 8px; border-radius: 4px; color: #720c80;">
+                        See more
+                    </span>
+                    <img src="Flecha.png" alt="Flecha" class="arrow" id="arrow-toggle-second">
+                </div>
+            </div>
+            
+
+            <!-- Contenido oculto dentro de una burbuja con scroll horizontal (segunda sección) -->
+            <div class="hidden-content" id="hidden-content-second">
+                <div class="bubble-container">
+                    <div class="scroll-container">
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/TrES-2b.html';">
+                            <img src="trES-2b.png" alt="Exoplanet 26">
+                            <p>TrES-2 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/KELT-9%20b.html';">
+                            <img src="KELT-9b.png" alt="Exoplanet 27">
+                            <p>KELT-9 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/K2-356b.html';">
+                            <img src="K2-356b.png" alt="Exoplanet 28">
+                            <p>K2-356 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/K2-118b.html';">
+                            <img src="K2-118b.png" alt="Exoplanet 29">
+                            <p>K2-118 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/HAT-P-25b.html';">
+                            <img src="HAT-P-25b.png" alt="Exoplanet 30">
+                            <p>HAT-P-25 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/DPLeonisb.html';">
+                            <img src="DPLeonisb.png" alt="Exoplanet 31">
+                            <p>DP Leonis b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/HD89307b.html';">
+                            <img src="HD89307b.png" alt="Exoplanet 32">
+                            <p>HD 89307 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/TOI-1696b.html';">
+                            <img src="TOI-1696b.png" alt="Exoplanet 33">
+                            <p>TOI-1696 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/GJ1214b.html';">
+                            <img src="GJ1214b.png" alt="Exoplanet 34">
+                            <p>GJ 1214 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/Wasp-17b.html';">
+                            <img src="Wasp-17b.png" alt="Exoplanet 35">
+                            <p>Wasp-17 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/HD40307g.html';">
+                            <img src="HD40307g.png" alt="Exoplanet 36">
+                            <p>HD 40307 g</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/HD106906b.html';">
+                            <img src="HD106906b.png" alt="Exoplanet 37">
+                            <p>HD 106906 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="window.location.href='https://storage.googleapis.com/slayers.earth/51Pegb.html';">
+                            <img src="51Pegb.png" alt="Exoplanet 38">
+                            <p>51 Peg b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Kepler-421b.png" alt="Exoplanet 39">
+                            <p>Kepler-421 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="HD284149AB.png" alt="Exoplanet 40">
+                            <p>HD 284149 AB</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="TOI-5076b.png" alt="Exoplanet 41">
+                            <p>TOI-5076 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="K2-334b.png" alt="Exoplanet 42">
+                            <p>K2-334 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="TOI-431.png" alt="Exoplanet 43">
+                            <p>TOI-431</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Qatar-6bdecoracion.png" alt="Exoplanet 44">
+                            <p>Qatar-6 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="NGTS-8bdecoracion.png" alt="Exoplanet 45">
+                            <p>NGTS-8 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="HD220197bdecoracion.png" alt="Exoplanet 46">
+                            <p>HD 220197 b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Kepler-448cdecoracion.png" alt="Exoplanet 47">
+                            <p>Kepler-448 c</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="42Draconisb.png" alt="Exoplanet 48">
+                            <p>42 Draconis b</p>
+                        </div>
+                        <div class="scroll-item" onclick="alert('coming soon');">
+                            <img src="Kepler51d.png" alt="Exoplanet 49">
+                            <p>Kepler 51 d</p>
+                        </div>
+                        <div class="scroll-item" onclick= "window.location.href='https://storage.googleapis.com/slayers.earth/HD189733b.html'">
+                            <img src="HD189733b.png" alt="Exoplanet 50">
+                            <p>HD 189733 b</p>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleContent() {
+            document.getElementById('hidden-content').classList.toggle('active');
+            let arrow = document.getElementById('arrow-toggle');
+            arrow.style.transform = arrow.style.transform === 'rotate(90deg)' ? 'rotate(0deg)' : 'rotate(90deg)';
+        }
+
+        function toggleSecondContent() {
+            document.getElementById('hidden-content-second').classList.toggle('active');
+            let arrow = document.getElementById('arrow-toggle-second');
+            arrow.style.transform = arrow.style.transform === 'rotate(90deg)' ? 'rotate(0deg)' : 'rotate(90deg)';
+        }
+    </script>
+
+
+</body>
+</html>
+

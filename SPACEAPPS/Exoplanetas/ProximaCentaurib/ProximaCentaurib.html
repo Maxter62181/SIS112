@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanets wiki - ProximaCentaurib </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #2b2d42, #1a1a2e) no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #12121c;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 2.5em;
+        }
+
+        header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #888;
+        }
+
+        nav a {
+            color: #888;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(150, 0, 250, 0.3);
+            color: #ddd;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .main-text {
+            width: 65%;
+        }
+
+        .main-text p {
+            text-align: justify;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .aside-block {
+            width: 30%;
+            background: rgba(50, 50, 70, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .aside-block img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .aside-block p {
+            margin: 10px 0;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        footer {
+            clear: both;
+            text-align: center;
+            padding: 20px;
+            background: #12121c;
+            margin-top: 40px;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        /* Estilos del botón "Home" */
+        .button {
+            display: inline-block;
+            background-color: #2b2d42; /* Color de fondo del botón */
+            color: #fff;               /* Color del texto del botón */
+            padding: 10px 20px;        /* Espaciado interno del botón */
+            border-radius: 5px;        /* Bordes redondeados */
+            text-decoration: none;     /* Quita el subrayado */
+            font-size: 1.1em;
+            transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+        }
+    
+        .button:hover {
+            background-color: #720c80; /* Cambia el color de fondo al pasar el ratón */
+            box-shadow: 0 0 10px rgba(114, 12, 128, 0.7); /* Añade un efecto de sombra */
+        }
+
+        /* Estilos del bloque lateral similar a Wikipedia */
+        .aside-block h2 {
+            color: #ddd;
+            border-bottom: 2px solid #720c80; /* Subtítulo subrayado con un color más claro */
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
+
+        .aside-block p {
+            text-align: left; /* Alinea el texto a la izquierda */
+            margin: 5px 0;
+            font-size: 1em;
+        }
+
+        .aside-block img {
+            max-width: 200px;
+            max-height: 200px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .reference {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        /* Estilos para el botón con imagen */
+        .button-with-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2b2d42; /* Fondo del botón */
+            color: #fff;               /* Color del texto */
+            padding: 10px 20px;        /* Relleno del botón */
+            border-radius: 5px;        /* Bordes redondeados */
+            text-decoration: none;     /* Quitar el subrayado del enlace */
+            font-size: 1.1em;
+            transition: background-color 0.3s ease; /* Suave transición de color */
+            margin-top: 20px;          /* Separación superior del botón */
+        }
+
+        .button-with-image:hover {
+            background-color: #720c80; /* Cambiar el color al pasar el ratón */
+            box-shadow: 0 0 10px rgba(114, 12, 128, 0.7); /* Añadir sombra en hover */
+        }
+
+        .button-with-image img {
+            width: 30px;     /* Ajustar el ancho de la imagen */
+            height: 30px;    /* Ajustar la altura de la imagen */
+            margin-right: 10px; /* Espacio entre la imagen y el texto */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Exoplanets Wiki - [ProximaCentaurib] </h1>
+        <h3>Team: God Slayers++</h3>
+        <nav>
+            <a href="https://storage.googleapis.com/slayers.earth/ExoplanetsWiki.html" class="button">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-text">
+            <p>ProximaCentaurib</p>
+            <p>
+                At only four light-years away, Proxima Centauri b is our closest known exoplanet neighbor. Proxima b is a super Earth exoplanet that orbits a M-type star. Its mass is 1.27 Earths, it takes 11.2 days to complete one orbit of its star, and is 0.0485 AU from its star. Its discovery was announced in 2016. In the habitable zone of its star, Proxima Centauri, Proxima b encounters bouts of extreme ultraviolet radiation hundreds of times greater than Earth does from the Sun. That radiation generates enough energy to strip away not just the lightest molecules — hydrogen — but also, over time, heavier elements such as oxygen and nitrogen.
+
+                <figure style="text-align: center;">
+                    <img src="SuperficieProximaCentaurib.png" alt="Descripción de la imagen" style="width: 400px;">
+                    <figcaption class="reference">ProximaCentaurib surface (Satelites based AI representation)</figcaption>
+                </figure>
+            </p>
+
+            <p>
+                Just because Proxima b's orbit is in the habitable zone, which is the distance from its host star where liquid water could pool on a planet's surface, doesn't mean it's habitable. It doesn't take into account, for example, whether water actually exists on the planet, or whether an atmosphere could survive at that orbit. Atmospheres are also essential for life as we know it: Having the right atmosphere allows for climate regulation, the maintenance of a water-friendly surface pressure, shielding from hazardous space weather, and the housing of life's chemical building blocks.
+
+            </p>
+
+            <p>
+                Proxima b, an Earth-size planet right outside our solar system in the habitable zone of its star, may not be able to keep a grip on its atmosphere, leaving the surface exposed to harmful stellar radiation and reducing its potential for habitability. At only four light-years away, Proxima b is our closest known extra-solar neighbor. However, due to the fact that it hasn't been seen crossing in front of its host star, the exoplanet eludes the usual method for learning about its atmosphere. Instead, scientists must rely on models to understand whether the exoplanet is habitable.
+
+            </p>
+
+            <p>
+               One such computer model considered what would happen if Earth orbited Proxima Centauri, our nearest stellar neighbor and Proxima b's host star, at the same orbit as Proxima b. The NASA study, published on July 24, 2017, in The Astrophysical Journal Letters, suggests Earth's atmosphere wouldn't survive in close proximity to the violent red dwarf.
+               “We decided to take the only habitable planet we know of so far — Earth — and put it where Proxima b is,” said Katherine Garcia-Sage, a space scientist at NASA's Goddard Space Flight Center in Greenbelt, Maryland, and lead author of the study. The research was supported by NASA's NExSS coalition — leading the search for life on planets beyond our solar system — and the NASA Astrobiology Institute.
+
+            </p>
+
+            <p>
+                The scientists also considered the size of the region over which atmospheric escape happens, called the polar cap. Planets are most sensitive to magnetic effects at their magnetic poles. When magnetic field lines at the poles are closed, the polar cap is limited and charged particles remain trapped near the planet. On the other hand, greater escape occurs when magnetic field lines are open, providing a one-way route to space.
+                “This study looks at an under-appreciated aspect of habitability, which is atmospheric loss in the context of stellar physics,” said Shawn Domagal-Goldman, a Goddard space scientist not involved in the study. “Planets have lots of different interacting systems, and it's important to make sure we include these interactions in our models.”
+                The scientists show that with the highest thermosphere temperatures and a completely open magnetic field, Proxima b could lose an amount equal to the entirety of Earth's atmosphere in 100 million years — that's just a fraction of Proxima b's 4 billion years thus far. When the scientists assumed the lowest temperatures and a closed magnetic field, that much mass escapes over 2 billion years.
+                “Things can get interesting if an exoplanet holds on to its atmosphere, but Proxima b's atmospheric loss rates here are so high that habitability is implausible,” said Jeremy Drake, an astrophysicist at the Harvard-Smithsonian Center for Astrophysics and co-author of the study. “This questions the habitability of planets around such red dwarfs in general.”
+                Red dwarfs like Proxima Centauri or the TRAPPIST-1 star are often the target of exoplanet hunts, because they are the coolest, smallest and most common stars in the galaxy. Because they are cooler and dimmer, planets have to maintain tight orbits for liquid water to be present.
+
+            </p>
+
+            <p>
+                <figure style="text-align: center;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGyMhvCTSe8YV4_wlU0giI8Zt8SraAhgajA&s" alt="Descripción de la imagen" style="width: 400px;">
+                    <figcaption class="reference">ProximaCentaurib wiki Image</figcaption>
+                </figure>
+            </p> 
+
+        </div>
+        <div class="aside-block">
+            <h2>ProximaCentaurib Overview</h2>
+            <img src="ProximaCentaurib.png" alt="Imagen descriptiva">
+            <figcaption class="reference">ProximaCentaurib visual representation.</figcaption>
+
+            <h3 class="highlighted-question">General Info</h3>
+
+            <p><strong>EXOPLANET NAME</strong> : ProximaCentaurib</p>
+            <p><strong>PLANET TYPE</strong> : Super Earth</p>
+            <p><strong>ORBITAL RADIUS</strong> : 0.0485 AU</p>
+            <p><strong>ORBITAL PERIOD</strong> : 11.2 days </p>
+            <p><strong>ORBITAL ECCENTRICITY</strong> : 0 </p>
+
+            <h3 class="highlighted-question">How long to Travel Here from Earth? (Light Speed)</h3>
+
+            <p><strong>TRAVEL SPEED</strong>: 671 Million miles per hour</p>
+            <p><strong>TRAVEL TIME</strong>: 500 light-years </p>
+            <p><strong>DETECTION METHOD</strong>: Transit</p>
+
+            <!-- Botón al final del bloque derecho con imagen y enlace -->
+            <footer>
+                <a href="https://storage.googleapis.com/slayers.earth/TRAPPIST-1e.html" class="button-with-image">
+                    <img src="TRAPPIST-1e.png" alt="Icono" class="button-icon">
+                    Next Exoplanet: TRAPPIST-1e
+
+                </a>
+            </footer>
+            <footer>
+                <a href="https://storage.googleapis.com/slayers.earth/KEPLER-186F.html" class="button-with-image">
+                    <img src="KEPLER-186f.png" alt="Icono" class="button-icon">
+                    Last Exoplanet: KEPLER-186f
+                </a>
+            </footer>
+    
+        </div>
+    </div>
+
+    <footer>
+        <p>Exoplanets Wiki - SpaceApps NASA 2024</p>
+    </footer>
+
+</body>
+</html>
