@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Ajedrez</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a2a;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Alinear los elementos desde arriba */
+            flex-direction: column;
+            padding-top: 50px; /* Para tener espacio en la parte superior */
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #00bfff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        /* Ajustar el contenedor principal del juego con 2 columnas */
+        #game-container {
+            display: none; /* Ocultar el juego hasta que se seleccione un modo */
+            flex-direction: row; /* Colocar los elementos en fila (tablero a la izquierda, indicador a la derecha) */
+            justify-content: center; /* Centrarlos en la página */
+            align-items: flex-start; /* Alinear desde la parte superior */
+            gap: 50px; /* Añadir espacio entre las columnas */
+            width: 100%;
+            max-width: 900px; /* Limitar el ancho del contenedor del juego */
+            margin: 0 auto; /* Asegurar que esté centrado en la pantalla */
+        }
+
+        /* Columna izquierda para el tablero */
+        #left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 480px; /* Limitar el ancho máximo del tablero */
+            width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+        }
+
+        /* Columna derecha para el indicador de turno */
+        #right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Alinear el contenido desde el inicio de la columna */
+            align-items: center;
+            max-width: 200px; /* Definir el ancho máximo de la columna derecha */
+            width: 100%;
+        }
+
+        /* Estilos del tablero */
+        #chess-board {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            gap: 0;
+            border: 3px solid #00bfff;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+            width: 480px; /* Asegurar que el tablero tenga un ancho fijo */
+        }
+
+        .tile {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tile.white {
+            background-color: #f0d9b5;
+        }
+
+        .tile.black {
+            background-color: #b58863;
+        }
+
+        .selected {
+            border: 3px solid #00bfff;
+        }
+
+        .piece {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Temporizadores */
+        .timer {
+            margin: 10px;
+            font-size: 1.5rem;
+            color: #00bfff;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        /* Indicador de turno a la derecha del tablero */
+        #turn-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #turn-message {
+            font-size: 1.5rem;
+            color: #00bfff;
+            margin-bottom: 10px;
+        }
+
+        #turn-gif {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* Estilos del menú principal */
+        #mode-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1c1c3b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+        }
+
+        #mode-selection button {
+            background-color: #1a1a3c;
+            border: none;
+            color: #00bfff;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #mode-selection button:hover {
+            transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+            box-shadow: 0 0 15px rgba(0, 191, 255, 1);
+        }
+
+        #mode-selection button:active {
+            transform: scale(0.95);
+        }
+
+        /* Estilos para mensajes */
+        #message {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00bfff;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        #checkmate-message {
+            color: #ff5050;
+            font-size: 2.5rem; /* Tamaño más grande para mayor visibilidad */
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #checkmate-overlay {
+            display: none; /* Asegurarse de que esté oculto al principio */
+            position: fixed;
+            top: -50;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro transparente */
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        #checkmate-overlay button {
+            background-color: #00bfff;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            margin-top: 15px; /* Espacio entre los botones */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+
+        #checkmate-overlay button:hover {
+            transform: scale(1.05); /* Efecto de agrandar al pasar el mouse */
+        }
+        
+
+        #mode-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px; /* Espacio debajo de los botones */
+        }
+
+        /* Estilos para el botón de reglas */
+        #rules-button {
+            background-color: #1a1a3c;
+            border: none;
+            color: #00bfff;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #rules-button:hover {
+            transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+            box-shadow: 0 0 15px rgba(0, 191, 255, 1);
+        }
+
+        #rules-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Caja de texto centrada y con scroll para las reglas */
+        #chess-rules {
+            display: none; /* Oculto inicialmente */
+            background-color: #1a1a3c;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+            width: calc(100% - 60px); /* Ocupa toda la pantalla menos 30px a cada lado */
+            max-height: 250px; /* Limitar la altura a 250px */
+            margin-top: 20px; /* Espacio entre los botones y las reglas */
+            color: #fff;
+            line-height: 1.6;
+            overflow-y: auto; /* Añadir scroll vertical */
+        }
+
+        #chess-rules h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        #chess-rules p {
+            font-size: 1.1rem;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Menú de selección de modo -->
+    <div id="mode-selection">
+        <h1>Bienvenido!! Juguemos Ajedrez!, elige tu modo de juego.</h1>
+        <button onclick="startGame('normal')">Modo Normal</button>
+        <button onclick="startGame('timer')">Modo con Temporizador</button>
+        <button id="rules-button" onclick="toggleChessRules()">Ver Reglas del Ajedrez</button>
+    </div>
+
+    <!-- Contenedor oculto con las reglas del ajedrez -->
+    <div id="chess-rules">
+        <h2>Reglas Básicas del Ajedrez</h2>
+        <p>
+            El ajedrez es un juego de estrategia entre dos jugadores, donde cada jugador controla un ejército compuesto por 16 piezas: 1 rey, 1 reina, 2 torres, 2 alfiles, 2 caballos y 8 peones.
+        </p>
+        <p>
+            El objetivo del ajedrez es dar jaque mate al rey del oponente. Esto significa que el rey está bajo ataque y no puede escapar. El jaque mate termina el juego.
+        </p>
+        <h3>Movimientos Básicos</h3>
+        <ul>
+            <li><b>Rey:</b> Se mueve una casilla en cualquier dirección.</li>
+            <li><b>Reina:</b> Se mueve en línea recta en cualquier dirección, tantas casillas como se desee.</li>
+            <li><b>Torre:</b> Se mueve en línea recta horizontal o verticalmente.</li>
+            <li><b>Alfil:</b> Se mueve en diagonal, tantas casillas como se desee.</li>
+            <li><b>Caballo:</b> Se mueve en forma de "L", dos casillas en una dirección y una en perpendicular.</li>
+            <li><b>Peón:</b> Se mueve hacia adelante una casilla, pero captura en diagonal. Puede avanzar dos casillas en su primer movimiento.</li>
+        </ul>
+        <h3>Reglas Especiales</h3>
+        <ul>
+            <li><b>Enroque:</b> Movimiento especial del rey y una torre que mejora la defensa del rey.</li>
+            <li><b>Peón al paso:</b> Ocurre cuando un peón avanza dos casillas desde su posición inicial y aterriza al lado de un peón oponente.</li>
+            <li><b>Promoción:</b> Cuando un peón alcanza el otro lado del tablero, se puede convertir en cualquier otra pieza (excepto en rey).</li>
+        </ul>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar las reglas del ajedrez
+        function toggleChessRules() {
+            const rules = document.getElementById('chess-rules');
+            if (rules.style.display === 'none' || rules.style.display === '') {
+                rules.style.display = 'block';
+            } else {
+                rules.style.display = 'none';
+            }
+        }
+
+        // Asegurarse de que el contenedor esté oculto al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('chess-rules').style.display = 'none';
+        });
+    </script>
+
+    <!-- Contenedor del juego con dos columnas -->
+    <div id="game-container">
+        <div id="left-column">
+            <!-- Contenedor del tablero y temporizadores -->
+            <div id="board-container">
+                <div id="white-timer" class="timer">Blanco: 10:00</div>
+                <div id="chess-board"></div>
+                <div id="black-timer" class="timer">Negro: 10:00</div>
+            </div>
+        </div>
+
+        <div id="right-column">
+            <!-- Indicador de turno a la derecha del tablero -->
+            <div id="turn-indicator">
+                <h2 id="turn-message">Turno de las Blancas</h2> <!-- Mensaje que cambiará -->
+                <img id="turn-gif" src="img/CaballeroBlanco.gif" alt="Turno de Blancas"> <!-- GIF que cambiará -->
+            </div>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <div id="checkmate-overlay">
+        <div id="checkmate-message"></div>
+        <button onclick="restartGame()">Reiniciar Partida</button>
+    </div>
+
+
+
+    <script src="chess.js"></script>
+
+</body>
+</html>

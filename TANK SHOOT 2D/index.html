@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TankShoot 2D</title>
+    <style>
+        html, body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a;
+            color: #e63946;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #e63946;
+            text-shadow: 2px 2px 10px #000;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ff5c5c;
+            text-shadow: 1px 1px 5px #000;
+            margin: 0 10px;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #e63946;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(230, 57, 70, 0.8);
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #ff2d2d;
+        }
+
+        #gameCanvas {
+            display: block;
+            border: 5px solid #e63946;
+            box-shadow: 0px 0px 15px rgba(230, 57, 70, 0.8);
+            background-color: #282c34;
+            border-radius: 10px;
+            width: 90vw;
+            height: 50vh;
+            max-width: 800px;
+            max-height: 600px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            a.button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            #gameCanvas {
+                width: 90vw;
+                height: 40vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            a.button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            #gameCanvas {
+                width: 90vw;
+                height: 30vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenido a BloodTank 2D!</h1>
+    <p>Preparate para la aventura de tanques y disparos en 2D mas grande de tu pecadora vida!!</p>
+    <a href="tank-shoot.html" class="button">¡Jugar ahora!</a>
+    
+    <!-- Canvas donde se dibujará la imagen -->
+    <canvas id="gameCanvas"></canvas>
+    
+    <script>
+        // Obtenemos el contexto del canvas para dibujar
+        const canvas = document.getElementById('gameCanvas');
+        const context = canvas.getContext('2d');
+
+        // Cargamos la imagen que se quiere dibujar en el canvas
+        const image = new Image();
+        image.src = 'Assets/BloodTank.png'; // Cambia 'ruta-de-tu-imagen.png' a la ruta real de la imagen
+
+        // Dibujar la imagen dentro del canvas una vez que la imagen se haya cargado
+        image.onload = function() {
+            // Redimensionamos la imagen para ajustarla dentro del canvas
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            
+            const imageAspectRatio = image.width / image.height;
+            let imageWidth = canvasWidth;
+            let imageHeight = canvasWidth / imageAspectRatio;
+
+            if (imageHeight > canvasHeight) {
+                imageHeight = canvasHeight;
+                imageWidth = canvasHeight * imageAspectRatio;
+            }
+
+            // Dibujar la imagen centrada en el canvas
+            const x = (canvasWidth - imageWidth) / 2;
+            const y = (canvasHeight - imageHeight) / 2;
+
+            context.drawImage(image, x, y, imageWidth, imageHeight);
+        };
+    </script>
+</body>
+</html>

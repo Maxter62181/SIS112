@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Ajedrez</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a2a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #00bfff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px #000;
+        }
+        #mode-selection, #chess-rules {
+            background-color: #1c1c3b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+            text-align: center;
+        }
+        #mode-selection button, #rules-button {
+            background-color: #1a1a3c;
+            color: #00bfff;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        #mode-selection button:hover, #rules-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 1);
+        }
+        #chess-rules {
+            display: none;
+            width: 90%;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-top: 20px;
+            color: #fff;
+            line-height: 1.6;
+        }
+        #chess-rules h2 { font-size: 1.5rem; }
+        #chess-rules p, #chess-rules ul { font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <div id="mode-selection">
+        <h1>Bienvenido!! Juguemos Ajedrez!, elige tu modo de juego.</h1>
+        <button onclick="startGame('normal')">Modo Normal</button>
+        <button onclick="startGame('timer')">Modo con Temporizador</button>
+        <button id="rules-button" onclick="toggleChessRules()">Ver Reglas del Ajedrez</button>
+    </div>
+
+    <div id="chess-rules">
+        <h2>Reglas Básicas del Ajedrez</h2>
+            <p>El ajedrez es un juego de estrategia entre dos jugadores, donde cada jugador controla un ejército compuesto por 16 piezas: 1 rey, 1 reina, 2 torres, 2 alfiles, 2 caballos y 8 peones.</p>
+            <p>El objetivo del ajedrez es dar jaque mate al rey del oponente. Esto significa que el rey está bajo ataque y no puede escapar. El jaque mate termina el juego.</p>
+            <h3>Movimientos Básicos</h3>
+            <ul>
+                <li><b>Rey:</b> Se mueve una casilla en cualquier dirección.</li>
+                <li><b>Reina:</b> Se mueve en línea recta en cualquier dirección, tantas casillas como se desee.</li>
+                <li><b>Torre:</b> Se mueve en línea recta horizontal o verticalmente.</li>
+                <li><b>Alfil:</b> Se mueve en diagonal, tantas casillas como se desee.</li>
+                <li><b>Caballo:</b> Se mueve en forma de "L", dos casillas en una dirección y una en perpendicular.</li>
+                <li><b>Peón:</b> Se mueve hacia adelante una casilla, pero captura en diagonal. Puede avanzar dos casillas en su primer movimiento.</li>
+            </ul>
+    </div>
+
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/menu.js"></script>
+</body>
+</html>

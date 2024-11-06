@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cadenas</title>
+    <style>
+        /* Colores inspirados en la imagen */
+        body {
+            background-color: #1a1a1a; /* Color de fondo oscuro */
+            color: #e63946; /* Rojo brillante para el texto principal */
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #e63946;
+            text-align: center;
+        }
+
+        input, button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        input {
+            width: 200px;
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            background-color: #e63946;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f77f00;
+        }
+
+        button:active {
+            background-color: #d62828;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #333;
+            color: white;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #listaCadenas {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Estilos para los botones */
+        #btnAgregar, #btnEliminar, #btnBuscar, #btnOrdenar, #btnOrdenarLongitud, #btnMostrarMayor {
+            background-color: #d62828;
+            color: white;
+            margin: 10px;
+            width: 150px;
+        }
+
+        #btnAgregar:hover, #btnEliminar:hover, #btnBuscar:hover, #btnOrdenar:hover, #btnOrdenarLongitud:hover, #btnMostrarMayor:hover {
+            background-color: #f77f00;
+        }
+
+        #btnAgregar:active, #btnEliminar:active, #btnBuscar:active, #btnOrdenar:active, #btnOrdenarLongitud:active, #btnMostrarMayor:active {
+            background-color: #e63946;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Cadenas Interactiva</h1>
+
+    <div class="container">
+        <input type="text" id="inputValor" placeholder="Agregar cadena">
+        <button id="btnAgregar">Agregar</button>
+        <br>
+        <input type="text" id="inputEliminar" placeholder="Eliminar cadena">
+        <button id="btnEliminar">Eliminar</button>
+        <br>
+        <input type="text" id="inputBuscar" placeholder="Buscar cadena">
+        <button id="btnBuscar">Buscar</button>
+        <br>
+        <button id="btnOrdenar">Ordenar Alfabéticamente</button>
+        <button id="btnOrdenarLongitud">Ordenar por Longitud</button>
+        <br>
+        <button id="btnMostrarMayor">Mostrar Mayor Cadena</button>
+
+        <ul id="listaCadenas">
+            <!-- Las cadenas por defecto se mostrarán aquí -->
+        </ul>
+    </div>
+    <source
+</body>
+</html>

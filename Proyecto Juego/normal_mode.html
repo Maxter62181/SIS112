@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Ajedrez - Modo Normal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a2a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 50px;
+        }
+        #game-container {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            max-width: 900px;
+        }
+        #chess-board {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            border: 3px solid #00bfff;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+        }
+        
+        .tile.white { background-color: #f0d9b5; 
+        }
+        
+        .tile.black { background-color: #b58863; 
+        }
+        
+        .selected { border: 3px solid #00bfff; 
+        }
+
+        .piece {
+            width: 90%; /* Ajustar el tamaño para que se vea proporcionado en la casilla */
+            height: 90%;
+            object-fit: contain; /* Mantener la proporción de la imagen */
+            padding: 5%; /* Ajuste para que no toquen los bordes */
+        }
+
+        #white-captured, #black-captured {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columnas antes de empezar una nueva fila */
+            gap: 5px; /* Espacio entre las piezas */
+        }
+        
+        .captured-piece {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        /* Pantalla de carga */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0a2a;
+            color: #00bfff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            z-index: 9999;
+        }
+
+        #loading-text {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        #promotion-options {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .promotion-option {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        /* Estilos para el overlay de jaque mate */
+        #checkmate-overlay {
+            display: none; /* Oculto completamente al inicio */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+
+        /* Contenedor central con el mensaje y los botones */
+        #checkmate-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mensaje de jaque mate */
+        #checkmate-message {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Botones de jaque mate */
+        .checkmate-button {
+            background-color: #00bfff;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin: 5px 0; /* Espacio entre los botones */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 80%;
+            text-align: center;
+        }
+
+        .checkmate-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 191, 255, 1);
+        }
+
+        .checkmate-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Estilo para los GIFs de celebración */
+        .celebration-gif {
+            display: none; /* Oculto al inicio */
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            animation: bounce 1s infinite alternate;
+        }
+
+        #celebration-left {
+            background-image: url('img/confeti.gif'); /* URL del GIF de la izquierda */
+        }
+
+        #celebration-right {
+            background-image: url('img/confeti.gif'); /* URL del GIF de la derecha */
+        }
+
+        /* Animación de rebote para los GIFs */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="white-captured" class="captured-section"></div>
+    <div id="game-container">
+        <div id="chess-board"></div>
+        <div id="turn-indicator">
+            <h2 id="turn-message">Turno de las Blancas</h2>
+            <img id="turn-gif" src="img/CaballeroBlanco.gif" alt="Turno de Blancas">
+        </div>
+    </div>
+    <div id="black-captured" class="captured-section"></div>
+    <div id="loading-screen">
+        <div id="loading-text">Cargando...</div>
+    </div>
+    <script>
+        // Asegurarse de que el tablero esté renderizado al cargar el DOM
+        document.addEventListener("DOMContentLoaded", function() {
+            renderBoard(); // Renderiza el tablero de inmediato
+            setTimeout(function() {
+                document.getElementById("loading-screen").style.display = "none";
+            }, 4000); // Ocultar la pantalla de carga después de 4 segundos
+        });
+    </script>
+    
+    <div id="checkmate-overlay">
+        <div class="celebration-gif" id="celebration-left"></div>
+        <div id="checkmate-content">
+            <div id="checkmate-message"></div>
+            <button class="checkmate-button" onclick="restartGame()">Reiniciar Partida</button>
+            <button class="checkmate-button" onclick="goToMenu()">Volver al Menú</button>
+        </div>
+        <div class="celebration-gif" id="celebration-right"></div>
+    </div>
+    
+
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/game.js"></script>
+</body>
+</html>
