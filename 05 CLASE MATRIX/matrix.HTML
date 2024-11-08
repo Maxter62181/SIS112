@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujo de Matriz en Canvas</title>
+    <link rel="stylesheet" href="matrix.CSS">
+</head>
+<body>
+    <div class="main-container">
+        <canvas id="matrixCanvas" width="500" height="500"></canvas>
+        <div class="button-container">
+            <button onclick="matriz.llenarMatrizAleatorio()">Patrón Aleatorio</button>
+            <button onclick="matriz.llenarMatrizDiagonal()">Patrón Diagonal Derecha</button>
+            <button onclick="matriz.llenarMatrizDiagonalIzquierda()">Patrón Diagonal Izquierda</button>
+            <button onclick="matriz.llenarMatrizBordes()">Patrón de Bordes</button>
+            <button onclick="matriz.llenarMatrizSBordeinferior()">Patrón de Borde inferior</button>
+            <button onclick="matriz.llenarMatrizPiramide()">Parón Piramide</button>
+            <button onclick="matriz.llenarMatrizPrimeraFila()">Llenar primera fila</button>
+            <button onclick="matriz.llenarMatrizPrimeraColumna()">Llenar Primera columna</button>
+            <button onclick="matriz.llenarMatrizCuatroBordes()">Llenar Cuatro Esquinas</button>
+            <button onclick="matriz.llenarMatrizSecuencial()">Llenar Matriz Secuencial Filas</button>
+            <button onclick="matriz.llenarMatrizSecuencialColumnas()">Llenar Matriz Secuencial Columnas</button>
+        </div>
+    </div>
+    
+    <!-- Scripts de JavaScript -->
+    <script src="matrix.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
