@@ -3,61 +3,165 @@ html, body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 
-/* Estilo del cuerpo y fondo */
 body {
-    background-color: #20232a;
-    color: white;
+    background: radial-gradient(circle, #452444, #2b2339, #0f1019);
+    color: #f7e8f6;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0; /* Aseguramos que no haya margen */
+    overflow: hidden; /* Para evitar scroll innecesario */
+    position: relative;
 }
 
 /* Contenedor principal */
 .main-container {
     display: flex;
     align-items: center;
-    gap: 20px; /* Espacio entre el canvas y los botones */
+    gap: 30px; /* Espacio entre el canvas y los botones */
 }
 
 /* Estilos para el contenedor de botones */
-.button-container {
+.button-container,
+.HomeworkButton-container {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre cada botón */
+    gap: 10px;
+    height: calc(8 * 44px + 7 * 10px);
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #ff6f61 #2b2339;
 }
+
+/* Scrollbar estilo Webkit */
+.button-container::-webkit-scrollbar,
+.HomeworkButton-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.button-container::-webkit-scrollbar-thumb,
+.HomeworkButton-container::-webkit-scrollbar-thumb {
+    background-color: #ff6f61;
+    border-radius: 4px;
+}
+
+.button-container::-webkit-scrollbar-thumb:hover,
+.HomeworkButton-container::-webkit-scrollbar-thumb:hover {
+    background-color: #d53e4f;
+}
+
+.button-container::-webkit-scrollbar-track,
+.HomeworkButton-container::-webkit-scrollbar-track {
+    background-color: #2b2339;
+}
+
+/* Títulos */
+#Titulo1, #Titulo2 {
+    position: absolute;
+    font-size: 24px;
+    color: #ff6f61;
+    background-color: rgba(43, 35, 57, 0.8);
+    padding: 10px;
+    border: 2px solid #ff6f61;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo específico para los títulos */
+#Titulo1 {
+    top: 30px;
+    left: 600px;
+}
+
+#Titulo2 {
+    top: 30px;
+    right: 85px;
+}
+
+/* Estilo para el GIF animado */
+.gif-container {
+    position: absolute;
+    top: 20px; /* A la misma altura que los títulos */
+    left: 980px;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 85px; /* Tamaño del GIF */
+    height: 85px;
+    background-image: url('Images/GifDecoration.gif'); /* Asegúrate de usar la ruta correcta */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%; /* Bordes redondeados, opcional */
+    box-shadow: 0px 0px 20px rgba(255, 111, 97, 0.8); /* Efecto de sombra */
+}
+
+.gif-bottom-container {
+    position: absolute;
+    top: 400px;
+    left: 770px;
+    width: 400px; /* Ocupar todo el ancho */
+    height: 200px; /* Ajusta la altura según tu necesidad */
+    background-image: url('images/giratina.gif'); /* Ruta del GIF */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+}
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3; /* Para estar detrás de todo */
+    pointer-events: none; /* Evita interferencias con clics o interacciones */
+}
+
 
 /* Estilos para los botones */
 button {
     padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
-    color: #20232a;
-    background-color: #61dafb;
-    border: none;
-    border-radius: 5px;
+    color: #2b2339;
+    background-color: #ff6f61;
+    border: 2px solid #d53e4f;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(255, 111, 97, 0.5);
 }
 
 button:hover {
-    background-color: #21a1f1;
-    transform: scale(1.05);
+    background-color: #d53e4f;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 15px rgba(255, 111, 97, 0.7);
 }
 
 button:active {
-    background-color: #1a85c2;
+    background-color: #a52a3a;
+    transform: scale(1.05);
+    box-shadow: 0px 3px 8px rgba(255, 111, 97, 0.4);
 }
 
 /* Estilo del canvas */
 canvas {
-    border: 3px solid #61dafb;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    max-width: 90vw;
-    max-height: 90vh;
+    border: 8px solid #ff6f61;
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgba(255, 111, 97, 0.7);
+    max-width: 99vw;
+    max-height: 97vh;
+    background: linear-gradient(135deg, #2b2339, #452444);
+    position: relative;
+    z-index: 1;
 }
+
