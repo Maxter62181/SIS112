@@ -516,36 +516,29 @@ class Matriz {
     
     llenarMatrizCrucesConcentricas() {
         this.vaciarMatriz();
-        const filas = this.filas;
-        const columnas = this.columnas;
     
-        for (let i = 0; i < filas; i++) {
-            for (let j = 0; j < columnas; j++) {
-                if (
-                    (i === 0 && j >= 1 && j <= columnas - 2) ||
-                    (i === filas - 1 && j >= 1 && j <= columnas - 2) ||
-                    (i === 1 && (j === 0 || j === columnas - 1)) ||
-                    (i === filas - 2 && (j === 0 || j === columnas - 1)) ||
-                    (i === 2 && j >= 2 && j <= columnas - 3) ||
-                    (i === filas - 3 && j >= 2 && j <= columnas - 3) ||
-                    (i === 3 && (j === 2 || j === columnas - 3)) ||
-                    (i === filas - 4 && (j === 2 || j === columnas - 3)) ||
-                    (i === 4 && j >= 3 && j <= columnas - 4) ||
-                    (i === filas - 5 && j >= 3 && j <= columnas - 4) ||
-                    (i === 5 && (j === 3 || j === columnas - 4)) ||
-                    (i === filas - 6 && (j === 3 || j === columnas - 4))
-                ) {
-                    this.matriz[i][j] = 1;
-                } else {
-                    this.matriz[i][j] = 0;
-                }
-            }
+        for (let j = 2; j < this.columnas - 2; j++) {
+            this.matriz[1][j] = 1;
+            this.matriz[this.filas - 2][j] = 1;
+        }
+    
+        for (let i = 2; i < this.filas - 2; i++) {
+            this.matriz[i][1] = 1;
+            this.matriz[i][this.columnas - 2] = 1;
+        }
+    
+        for (let j = 2; j < this.columnas - 2; j++) {
+            this.matriz[4][j] = 1;
+            this.matriz[5][j] = 1;
+        }
+    
+        for (let i = 2; i < this.filas - 2; i++) {
+            this.matriz[i][4] = 1;
+            this.matriz[i][5] = 1;
         }
     
         this.dibujarMatriz();
     }
-    
-    
     
     
     
@@ -698,16 +691,18 @@ class Matriz {
 
     llenarMatrizRelojDeArena() {
         this.vaciarMatriz();
+        // Calcular el centro de la matriz
+        const centro = Math.floor(this.columnas / 2);
+        // Altura de la pirámide (mitad de la matriz)
+        const alturaPiramide = Math.floor(this.filas / 2);
     
-        const filas = this.filas;
-        const columnas = this.columnas;
-    
-        for (let i = 0; i < filas; i++) {
-            for (let j = 0; j < columnas; j++) {
-                if (
-                    (j >= i && j < columnas - i) || // Parte superior
-                    (j >= columnas - i - 1 && j <= i) // Parte inferior
-                ) {
+        // Rellenar el triángulo en la parte superior
+        for (let i = 0; i < alturaPiramide; i++) {
+            const inicio = i;
+            const fin = this.columnas - i - 1;
+            for (let j = 0; j < this.columnas; j++) {
+                // Condición para evitar la diagonal
+                if (j >= inicio && j <= fin && j !== this.columnas - i - 1) {
                     this.matriz[i][j] = 1;
                 } else {
                     this.matriz[i][j] = 0;
@@ -715,8 +710,26 @@ class Matriz {
             }
         }
     
+        // Rellenar el triángulo invertido en la parte inferior
+        for (let i = 0; i < alturaPiramide; i++) {
+            const inicio = i;
+            const fin = this.columnas - i - 1;
+            const filaActual = this.filas - i - 1;
+            for (let j = 0; j < this.columnas; j++) {
+                // Condición para evitar la diagonal
+                if (j >= inicio && j <= fin && j !== this.columnas - i - 1) {
+                    this.matriz[filaActual][j] = 1;
+                } else {
+                    this.matriz[filaActual][j] = 0;
+                }
+            }
+        }
+    
         this.dibujarMatriz();
     }
+    
+    
+    
     
 
     // Método para dibujar la matriz en el canvas
