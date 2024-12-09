@@ -32,6 +32,7 @@ let cursorCol = 0;
 let whiteCaptured = [];
 let blackCaptured = [];
 
+
 // Renderizar el tablero
 function renderBoard() {
     const chessBoard = document.getElementById('chess-board');
@@ -102,40 +103,43 @@ function handleEnterPress() {
     const piece = board[cursorRow][cursorCol];
 
     if (selectedPiece) {
-        if (selectedPiece.row === cursorRow && selectedPiece.col === cursorCol) {
-            selectedPiece = null;
-            renderBoard();
-        } else if (isValidMove(selectedPiece.row, selectedPiece.col, cursorRow, cursorCol)) {
-            const captured = movePiece(selectedPiece.row, selectedPiece.col, cursorRow, cursorCol);
+        // Intentar mover la pieza seleccionada
+        if (isValidMove(selectedPiece.row, selectedPiece.col, cursorRow, cursorCol)) {
+            const previousBoard = JSON.parse(JSON.stringify(board)); // Guardar estado previo para verificar jaque
+
+            movePiece(selectedPiece.row, selectedPiece.col, cursorRow, cursorCol);
+
+            // Verificar si el rey del jugador sigue en jaque
             if (isKingInCheck(turn)) {
-                undoMove();
+                // Si el rey está en jaque después del movimiento, revertir el movimiento
+                board = previousBoard;
                 showMessage("No puedes dejar tu rey en jaque.");
+                renderBoard();
             } else {
-                // Solo agrega una pieza capturada si realmente hubo captura
-                if (captured) addCapturedPiece(captured);
-                toggleTurn();
+                // Verificar si el movimiento pone al oponente en jaque mate
+                if (isCheckmate(turn === 'white' ? 'black' : 'white')) {
+                    showCheckmate(turn === 'white' ? 'black' : 'white'); // Cambiar el parámetro a 'black' si 'white' gana y viceversa
+                } else {
+                    toggleTurn();
+                }
             }
-            selectedPiece = null;
-        } else {
-            showMessage("Movimiento inválido.");
         }
+        selectedPiece = null; // Desmarcar la pieza seleccionada
     } else {
-        if (piece !== ' ' && isPieceTurn(piece) && canMoveInCheck(piece, cursorRow, cursorCol)) {
+        // Seleccionar una pieza si es el turno del jugador correcto
+        if (piece !== ' ' && isPieceTurn(piece)) {
             selectedPiece = { row: cursorRow, col: cursorCol };
-            renderBoard();
-        } else {
-            showMessage("Selecciona una pieza válida.");
         }
     }
 }
 
-
-
-
-
 // Verificar si es el turno correcto para la pieza seleccionada
 function isPieceTurn(piece) {
     return (turn === 'white' && piece === piece.toUpperCase()) || (turn === 'black' && piece === piece.toLowerCase());
+}
+
+function isPieceTurnForPlayer(piece, player) {
+    return (player === 'white' && piece === piece.toUpperCase()) || (player === 'black' && piece === piece.toLowerCase());
 }
 
 // Mover una pieza y actualizar el tablero
@@ -388,29 +392,34 @@ function isKingInCheck(player) {
 
 // Verificar si es jaque mate
 function isCheckmate(player) {
-    if (!isKingInCheck(player)) return false;
+    // Verificar si el rey del jugador está en jaque
+    if (!isKingInCheck(player)) {
+        return false;
+    }
 
+    // Verificar si alguna pieza del jugador tiene un movimiento válido
     for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 8; col++) {
             const piece = board[row][col];
-            if (piece !== ' ' && isPieceTurn(piece)) {
+            if (piece !== ' ' && isPieceTurnForPlayer(piece, player)) {
                 for (let newRow = 0; newRow < 8; newRow++) {
                     for (let newCol = 0; newCol < 8; newCol++) {
-                        const previousBoard = JSON.parse(JSON.stringify(board));
                         if (isValidMove(row, col, newRow, newCol)) {
-                            movePiece(row, col, newRow, newCol);
-                            if (!isKingInCheck(player)) {
-                                board = previousBoard;
-                                return false;
+                            const previousBoard = JSON.parse(JSON.stringify(board)); // Guardar el estado
+                            movePiece(row, col, newRow, newCol); // Intentar el movimiento
+                            const isStillInCheck = isKingInCheck(player); // Verificar si sigue en jaque
+                            board = previousBoard; // Revertir el movimiento
+                            if (!isStillInCheck) {
+                                return false; // El jugador tiene un movimiento válido
                             }
-                            board = previousBoard;
                         }
                     }
                 }
             }
         }
     }
-    return true;
+
+    return true; // No hay movimientos válidos, es jaque mate
 }
 
 function showCheckmate(winner) {

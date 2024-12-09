@@ -1,0 +1,77 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4e2a6; /* Fondo cálido miel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.collage {
+    width: 20%;
+    position: relative;
+}
+
+/* Estilos básicos de las imágenes */
+.image {
+    border: 2px solid #2e2926; /* Borde negro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-sizing: border-box;
+    background-color: #f6c177; /* Color dorado */
+    position: absolute; /* Permite moverlas de forma independiente */
+}
+
+/* Tamaños predeterminados */
+/* Imágenes lado izquierdo */
+/* Imágenes lado izquierdo */
+.img1 { width: 80px; height: 80px; top: 10px; left: 10px; }
+.img2 { width: 100px; height: 100px; top: 100px; left: 30px; }
+.img3 { width: 120px; height: 120px; top: 210px; left: 10px; }
+.img4 { width: 80px; height: 80px; top: 350px; left: 30px; }
+.img5 { width: 100px; height: 100px; top: 440px; left: 10px; }
+.img6 { width: 120px; height: 120px; top: 560px; left: 30px; }
+.img7 { width: 80px; height: 80px; top: 700px; left: 10px; }
+.img8 { width: 100px; height: 100px; top: 790px; left: 30px; }
+.img9 { width: 120px; height: 120px; top: 910px; left: 10px; }
+.img10 { width: 80px; height: 80px; top: 1050px; left: 30px; }
+.img11 { width: 100px; height: 100px; top: 1170px; left: 10px; } /* Movida al lado izquierdo */
+.img12 { width: 120px; height: 120px; top: 1290px; left: 30px; } /* Movida al lado izquierdo */
+
+/* Imágenes lado derecho */
+.img13 { width: 80px; height: 80px; top: 10px; right: 10px; }
+.img14 { width: 100px; height: 100px; top: 120px; right: 30px; }
+.img15 { width: 120px; height: 120px; top: 240px; right: 10px; }
+.img16 { width: 80px; height: 80px; top: 360px; right: 30px; }
+.img17 { width: 100px; height: 100px; top: 470px; right: 10px; }
+.img18 { width: 120px; height: 120px; top: 590px; right: 30px; }
+.img19 { width: 80px; height: 80px; top: 710px; right: 10px; }
+.img20 { width: 100px; height: 100px; top: 800px; right: 30px; }
+.img21 { width: 120px; height: 120px; top: 920px; right: 10px; }
+.img22 { width: 80px; height: 80px; top: 1040px; right: 30px; }
+.img23 { width: 100px; height: 100px; top: 1130px; right: 10px; }
+.img24 { width: 120px; height: 120px; top: 1250px; right: 30px; }
+.img25 { width: 80px; height: 80px; top: 1390px; right: 10px; }
+
+
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    margin: 0 20px;
+    background-color: #f6c177; /* Fondo cálido */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #2e2926; /* Texto negro */
+}
